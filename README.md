@@ -1,8 +1,7 @@
-# sc2map
-SupplyChain2Map
-=======
+# SupplyChain2Map
+=================
 
-> sc2map is a JS library used for visualizing supply chain data in RDF, according to [SCORVoc](https://github.com/vocol/scor) vocabulary.
+> sc2map is a JS library used for visualizing supply chain data in RDF, adhering to [SCORVoc](https://github.com/vocol/scor) vocabulary.
 
 ### License
 
