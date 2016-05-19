@@ -20,7 +20,6 @@
       "stage-0"
     ],
     "plugins": [
-      "transform-runtime"
     ]
   },
   "eslintConfig": {
@@ -52,8 +51,10 @@
     "eslint-plugin-import": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^1.2.0",
     "eslint-plugin-react": "^5.1.1",
+    "express": "^4.13.4",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
+    "pug": "^2.0.0-alpha7",
     "rollup": "^0.26.2",
     "rollup-plugin-babel": "^2.4.0",
     "sinon": "^2.0.0-pre"
@@ -67,6 +68,7 @@
     "build": "node tools/build",
     "prepublish": "npm run build",
     "publish:docs": "easystatic deploy docs --repo kriasoft/babel-starter-kit",
-    "start": "easystatic start docs"
+    "start": "easystatic start docs",
+    "server": "node tools/server"
   }
 }
