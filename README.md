@@ -11,15 +11,11 @@ npm install
 ```
 
 ### Usage
-To build the library, do:
+To run the app, do:
 ```bash
-npm run build
+npm start
 ```
 
-To test it using a simple app we provide, run:
-```bash
-npm run server
-```
 And visit http://localhost:3000
 
 ### License
