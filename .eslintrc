@@ -1,0 +1,28 @@
+{
+  "parser"  : "babel-eslint",
+  "extends" : [
+    "airbnb"
+  ],
+  "plugins": [
+    "babel"
+  ],
+  "env"     : {
+    "browser" : true
+  },
+  "globals" : {
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__COVERAGE__" : false,
+    "__BASENAME__" : false
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": [2, 120, 2],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-shadow": ["error", { "allow": ["err"] }],
+    "no-multi-str": ["warning", 2],
+    "generator-star-spacing": 0,
+    "babel/generator-star-spacing": 1
+  }
+}

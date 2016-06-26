@@ -1,0 +1,97 @@
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann:   <http://purl.org/vocab/vann/> .
+@prefix void:   <http://rdfs.org/ns/void#> .
+@prefix olo:    <http://purl.org/ontology/olo/core#> .
+@prefix vs:     <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix doap:   <http://usefulinc.com/ns/doap#> .
+@prefix schema: <http://schema.org/> .
+@prefix geo:    <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix ngeo: <http://geovocab.org/geometry#> .
+@prefix ex:     <http://example.org/> .
+@prefix :       <http://purl.org/eis/vocab/scor#> .
+
+
+ex:p1Path a ngeo:LineString ;
+        ngeo:posList (
+                [ geo:lat "50.77512"^^xsd:double; geo:long "7.18437"^^xsd:double; ]
+                [ geo:lat "50.70037"^^xsd:double; geo:long "7.08687"^^xsd:double; ]
+        ) .
+
+:someProcess_1 a :DeliverStockedProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Sangio Sugar Factory" ;
+        ex:isSubjectOf "Raw sugar" ;
+        ex:processId "2ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p1Path ;
+        ex:hasStartTime "2016-03-24T12:21:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-04-01T09:12:00"^^xsd:datetime ;
+        ex:hasTest ("1" "2" "3") ;
+        :hasMetricAG_1 "19" ;
+        :hasMetricAG_2 "13" ;
+        :hasMetricAG_3 "11" ;
+        :hasMetricAG_4 "15" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "10" ;
+        :hasMetricCO_15 "19" ;
+        :hasMetricCO_16 "14" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_33 "90" ;
+        :hasMetricRL_50 "90" ;
+        :hasMetricRL_32 "90" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
+:someProcess_2 a :SourceMakeToOrderProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Krataska Automotive" ;
+        ex:isSubjectOf "BMW 3" ;
+        ex:processId "1ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        :hasMetricAG_1 "19" ;
+        :hasMetricAG_2 "13" ;
+        :hasMetricAG_3 "11" ;
+        :hasMetricAG_4 "15" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "10" ;
+        :hasMetricCO_15 "19" ;
+        :hasMetricCO_16 "14" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_33 "100" ;
+        :hasMetricRL_50 "100" ;
+        :hasMetricRL_32 "90" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
+:someProcess_1 a :DeliverStockedProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Sangio Sugar Factory" ;
+        ex:isSubjectOf "Flour" ;
+        ex:processId "3ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        :hasMetricAG_1 "19" ;
+        :hasMetricAG_2 "13" ;
+        :hasMetricAG_3 "11" ;
+        :hasMetricAG_4 "15" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "10" ;
+        :hasMetricCO_15 "19" ;
+        :hasMetricCO_16 "14" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_33 "100" ;
+        :hasMetricRL_50 "100" ;
+        :hasMetricRL_32 "99" ;
+        :hasMetricRL_34 "99" ;  
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
