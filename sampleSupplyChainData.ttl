@@ -30,7 +30,6 @@ ex:p1Path a ngeo:LineString ;
         ex:hasPath ex:p1Path ;
         ex:hasStartTime "2016-03-24T12:21:00"^^xsd:datetime ;
         ex:hasEndTime "2016-04-01T09:12:00"^^xsd:datetime ;
-        ex:hasTest ("1" "2" "3") ;
         :hasMetricAG_1 "19" ;
         :hasMetricAG_2 "13" ;
         :hasMetricAG_3 "11" ;

@@ -1,4 +1,5 @@
 import leaflet from 'leaflet';
+import _ from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import './index.css';
@@ -29,6 +30,13 @@ class Map {
       .setLatLng(e.latlng)
       .setContent(`You clicked the map at ${e.latlng.toString()}`)
       .openOn(this.el);
+  }
+
+  addPath(path) {
+    path.forEach((val, i, array) => {
+      leaflet.marker(val).addTo(this.el)
+        .bindPopup(`Node ${i}`);
+    });
   }
 }
 

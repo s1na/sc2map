@@ -16,11 +16,17 @@ let store;
 
 function loadData(store, data) {
   var query = `
-    SELECT ?st ?et ?path {
+    SELECT ?st ?et ?slat ?slong ?dlat ?dlong {
       ?p a scor:DeliverStockedProduct;
          ex:hasStartTime ?st;
          ex:hasEndTime ?et;
-         ex:hasTest/rdf:rest{1}/rdf:first ?path.
+         ex:hasPath/ngeo:posList ?l.
+      ?l rdf:first ?s;
+         rdf:rest/rdf:first ?d.
+      ?s geo:lat ?slat;
+         geo:long ?slong.
+      ?d geo:lat ?dlat;
+         geo:long ?dlong.
     }`;
   store.load('text/turtle', data, (succ, n) => {
     console.log(`Loaded ${n} triples`);
@@ -28,12 +34,11 @@ function loadData(store, data) {
       if (err) console.log(err);
       else {
         console.log(res);
+        const process = res[0];
+        map.addPath([[process.slat.value, process.slong.value], [process.dlat.value, process.dlong.value]]);
         //store.node(res[0].path.value, function (err, node) {
           //console.log(node);
         //});
-        /* const process = res[0];*/
-        //leaflet.marker([process.sx.value, process.sy.value]).addTo(mapEl)
-          //.bindPopup('Source');
         //leaflet.marker([process.dx.value, process.dy.value]).addTo(mapEl)
           /*.bindPopup('Dest');*/
       }
