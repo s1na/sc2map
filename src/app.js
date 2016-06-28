@@ -2,7 +2,8 @@ import 'babel-polyfill';
 import rdfstore from 'rdfstore/dist/rdfstore';
 import _ from 'lodash';
 import $ from 'jquery';
-import 'material-design-lite'
+import moment from 'moment';
+import 'material-design-lite';
 import map from './map';
 import * as config from './config';
 
@@ -12,10 +13,9 @@ import './index.css';
 
 
 const reader = new FileReader();
-let store;
 
 function loadData(store, data) {
-  var query = `
+  const query = `
     SELECT ?st ?et ?slat ?slong ?dlat ?dlong {
       ?p a scor:DeliverStockedProduct;
          ex:hasStartTime ?st;
@@ -35,12 +35,17 @@ function loadData(store, data) {
       else {
         console.log(res);
         const process = res[0];
-        map.addPath([[process.slat.value, process.slong.value], [process.dlat.value, process.dlong.value]]);
-        //store.node(res[0].path.value, function (err, node) {
-          //console.log(node);
-        //});
-        //leaflet.marker([process.dx.value, process.dy.value]).addTo(mapEl)
-          /*.bindPopup('Dest');*/
+        const st = moment(process.st.value);
+        const et = moment(process.et.value);
+        const duration = et.from(st);
+        map.addPath(
+          [[process.slat.value, process.slong.value], [process.dlat.value, process.dlong.value]],
+          `<ul>
+             <li>Start time:  ${et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+             <li>End time:  ${st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+             <li>Duration: ${duration}</li>
+           </ul>`
+        );
       }
     });
   });
@@ -48,11 +53,11 @@ function loadData(store, data) {
 
 function readText(e) {
   let output = '';
-  let filePath = this;
-  let store = e.data.store;
+  const filePath = this;
+  const store = e.data.store;
   if (filePath.files && filePath.files[0]) {
-    reader.onload = (e) => {
-      output = e.target.result;
+    reader.onload = (ev) => {
+      output = ev.target.result;
       loadData(store, output);
     };
     reader.readAsText(filePath.files[0]);
@@ -62,8 +67,8 @@ function readText(e) {
 
 function submitQuery(e) {
   if (e.preventDefault) e.preventDefault();
-  let store = e.data.store;
-  let q = $('#queryForm :input[name=query]')[0].value;
+  const store = e.data.store;
+  const q = $('#queryForm :input[name=query]')[0].value;
   store.execute(q, (err, res) => {
     if (err) console.log(err);
     else {
@@ -79,7 +84,7 @@ rdfstore.create((err, store) => {
     store.registerDefaultNamespace(key, val);
   });
 
-  $('#queryForm').submit({ store }, submitQuery)
+  $('#queryForm').submit({ store }, submitQuery);
 
   $('#dataFile').change({ store }, readText);
 });

@@ -1,9 +1,7 @@
 import leaflet from 'leaflet';
-import _ from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import './index.css';
-
 
 
 class Map {
@@ -12,8 +10,8 @@ class Map {
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
 
-    const access_token = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw'
-    leaflet.tileLayer(`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${access_token}`, {
+    const accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
+    leaflet.tileLayer(`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${accessToken}`, {
       maxZoom: 18,
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
         '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -32,15 +30,19 @@ class Map {
       .openOn(this.el);
   }
 
-  addPath(path) {
-    path.forEach((val, i, array) => {
-      leaflet.marker(val).addTo(this.el)
-        .bindPopup(`Node ${i}`);
+  addPath(path, info) {
+    const latlngs = [];
+    path.forEach((val, i) => {
+      const marker = leaflet.marker(val).addTo(this.el);
+      marker.bindPopup(`Node ${i}`);
+      latlngs.push(marker.getLatLng());
     });
+    leaflet.polyline(latlngs).addTo(this.el)
+      .bindPopup(info);
   }
 }
 
 
-let map = new Map();
+const map = new Map();
 
 export default map;
