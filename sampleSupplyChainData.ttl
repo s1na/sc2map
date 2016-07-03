@@ -16,11 +16,25 @@
 @prefix :       <http://purl.org/eis/vocab/scor#> .
 
 
+ex:point1 a geo:Point;
+        geo:lat "50.77512"^^xsd:double;
+        geo:long "7.18437"^^xsd:double.
+
+ex:point2 a geo:Point;
+        geo:lat "50.70037"^^xsd:double;
+        geo:long "7.08687"^^xsd:double.
+
+ex:point3 a geo:Point;
+        geo:lat "50.73221"^^xsd:double;
+        geo:long "7.10212"^^xsd:double.
+
+ex:p1PathSeq a rdf:Seq;
+        rdfs:member ex:point1;
+        rdfs:member ex:point2;
+        rdfs:member ex:point3.
+
 ex:p1Path a ngeo:LineString ;
-        ngeo:posList (
-                [ geo:lat "50.77512"^^xsd:double; geo:long "7.18437"^^xsd:double; ]
-                [ geo:lat "50.70037"^^xsd:double; geo:long "7.08687"^^xsd:double; ]
-        ) .
+        ngeo:posList ex:p1PathSeq.
 
 :someProcess_1 a :DeliverStockedProduct ;
         ex:hasCommitDate "2015-11-05" ;

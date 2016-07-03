@@ -11,22 +11,18 @@ import 'material-design-lite/material.css';
 import './index.css';
 
 
-
 const reader = new FileReader();
 
 function loadData(store, data) {
   const query = `
-    SELECT ?st ?et ?slat ?slong ?dlat ?dlong {
+    SELECT ?st ?et ?mem ?lat ?long {
       ?p a scor:DeliverStockedProduct;
          ex:hasStartTime ?st;
          ex:hasEndTime ?et;
          ex:hasPath/ngeo:posList ?l.
-      ?l rdf:first ?s;
-         rdf:rest/rdf:first ?d.
-      ?s geo:lat ?slat;
-         geo:long ?slong.
-      ?d geo:lat ?dlat;
-         geo:long ?dlong.
+      ?l rdfs:member ?mem.
+      ?mem geo:lat ?lat;
+           geo:long ?long.
     }`;
   store.load('text/turtle', data, (succ, n) => {
     console.log(`Loaded ${n} triples`);
@@ -34,18 +30,20 @@ function loadData(store, data) {
       if (err) console.log(err);
       else {
         console.log(res);
-        const process = res[0];
-        const st = moment(process.st.value);
-        const et = moment(process.et.value);
-        const duration = et.from(st);
-        map.addPath(
-          [[process.slat.value, process.slong.value], [process.dlat.value, process.dlong.value]],
-          `<ul>
-             <li>Start time:  ${et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
-             <li>End time:  ${st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
-             <li>Duration: ${duration}</li>
-           </ul>`
-        );
+        if (res.length > 0) {
+          const st = moment(res[0].st.value);
+          const et = moment(res[0].et.value);
+          const duration = et.from(st);
+          const points = res.map((point) => [point.lat.value, point.long.value]);
+          map.addPath(
+            points,
+            `<ul>
+               <li>Start time:  ${et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+               <li>End time:  ${st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+               <li>Duration: ${duration}</li>
+             </ul>`
+          );
+        }
       }
     });
   });
