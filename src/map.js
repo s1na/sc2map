@@ -1,6 +1,8 @@
 import leaflet from 'leaflet';
+// import 'leaflet.label/dist/leaflet.label.js';
 
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.label/dist/leaflet.label.css';
 import './index.css';
 
 
@@ -21,6 +23,13 @@ class Map {
 
     this.popup = leaflet.popup();
     this.el.on('click', this.onMapClick.bind(this));
+
+    this.colors = [
+      '#7f8c8d', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
+      '#e74c3c', '#ecf0f1', '#2c3e50', '#f1c40f', '#1abc9c',
+    ];
+    this.usedColors = [];
+    this.processes = {};
   }
 
   onMapClick(e) {
@@ -30,15 +39,45 @@ class Map {
       .openOn(this.el);
   }
 
-  addPath(path, info) {
+  addProcess(uid, obj) {
+    const p = obj;
     const latlngs = [];
-    path.forEach((val, i) => {
+
+    const color = this.colors.pop();
+    this.usedColors.push(color);
+    p.color = color;
+
+    p.markers = [];
+    p.info = `
+      <ul>
+        <li>Start time:  ${p.et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+        <li>End time:  ${p.st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+        <li>Duration: ${p.duration}</li>
+      </ul>
+      `;
+
+    p.points.forEach((val, i) => {
       const marker = leaflet.marker(val).addTo(this.el);
       marker.bindPopup(`Node ${i}`);
       latlngs.push(marker.getLatLng());
+      p.markers.push(marker);
     });
-    leaflet.polyline(latlngs).addTo(this.el)
-      .bindPopup(info);
+    p.line = leaflet.polyline(latlngs, { color }).addTo(this.el)
+      .bindPopup(p.info);
+
+    this.processes[uid] = p;
+  }
+
+  addLabelToProcess(uid, label) {
+    const lines = this.processes[uid].info.split('\n');
+    lines.pop();
+    lines.pop();
+    this.processes[uid].info = `
+      ${lines.join('\n')}
+        ${label}
+      </ul>
+      `;
+    this.processes[uid].line.bindPopup(this.processes[uid].info);
   }
 }
 
