@@ -76,51 +76,21 @@
                     </div>
                     <div class="mdl-grid mdl-grid--no-spacing">
                       <div class="mdl-cell mdl-cell--9-col mdl-cell--middle">
-                        <form id="productNameForm">
+                        <form id="analyseForm">
                           <div class="mdl-grid mdl-grid--no-spacing">
-                            <div class="mdl-cell mdl-cell--10-col">
-                              <div class="mdl-textfield mdl-js-textfield mdl-text-field--floating-label">
-                                <textarea id="queryInput" name="query" rows="1" class="mdl-textfield__input"></textarea>
-                                <label class="mdl-textfield__label" for="queryInput">Product Name</label>
-                              </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                              <label class="mdl-textfield__label" type="text" for="productNameInput">Product name</label>
+                              <input class="mdl-textfield__input" id="productNameInput" name="productNameInput" type="text" />
                             </div>
-                            <div class="mdl-cell mdl-cell--2-col">
-                              <button type="submit" class="mdl-button mdl-js-button mdl-button-primary mdl-button-icon"><i class="material-icons">done</i></button>
+                            <div class="mdl-textfield mdl-js-textfield">
+                              <label class="mdl-textfield__label" type="text" for="startTimeInput">Start time</label>
+                              <input class="mdl-textfield__input" id="startTimeInput" name="startTimeInput" type="text" />
                             </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="mdl-grid mdl-grid--no-spacing">
-                      <div class="mdl-cell mdl-cell--9-col mdl-cell--middle">
-                        <form id="startTimeForm">
-                          <div class="mdl-grid mdl-grid--no-spacing">
-                            <div class="mdl-cell mdl-cell--10-col">
-                              <div class="mdl-textfield mdl-js-textfield mdl-text-field--floating-label">
-                                <textarea id="queryInput" name="query" rows="1" class="mdl-textfield__input"></textarea>
-                                <label class="mdl-textfield__label" for="queryInput">Start Time</label>
-                              </div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                              <label class="mdl-textfield__label" for="endTimeInput">End Time</label>
+                              <input class="mdl-textfield__input" id="endTimeInput" name="endTimeInput" type="text" />
                             </div>
-                            <div class="mdl-cell mdl-cell--2-col">
-                              <button type="submit" class="mdl-button mdl-js-button mdl-button-primary mdl-button-icon"><i class="material-icons">done</i></button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="mdl-grid mdl-grid--no-spacing">
-                      <div class="mdl-cell mdl-cell--9-col mdl-cell--middle">
-                        <form id="endTimeForm">
-                          <div class="mdl-grid mdl-grid--no-spacing">
-                            <div class="mdl-cell mdl-cell--10-col">
-                              <div class="mdl-textfield mdl-js-textfield mdl-text-field--floating-label">
-                                <textarea id="queryInput" name="query" rows="1" class="mdl-textfield__input"></textarea>
-                                <label class="mdl-textfield__label" for="queryInput">End Time</label>
-                              </div>
-                            </div>
-                            <div class="mdl-cell mdl-cell--2-col">
-                              <button type="submit" class="mdl-button mdl-js-button mdl-button-primary mdl-button-icon"><i class="material-icons">done</i></button>
-                            </div>
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button-primary">Analyse</button>
                           </div>
                         </form>
                       </div>

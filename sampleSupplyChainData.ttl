@@ -62,7 +62,53 @@ ex:p1Path a ngeo:LineString ;
         :hasMetricRS_22 "14" ;
         :hasMetricRS_24 "10" .
 
-:someProcess_2 a :SourceMakeToOrderProduct ;
+ex:point4 a geo:Point;
+        geo:lat "50.57512"^^xsd:double;
+        geo:long "6.88437"^^xsd:double.
+
+ex:point5 a geo:Point;
+        geo:lat "50.80037"^^xsd:double;
+        geo:long "7.52687"^^xsd:double.
+
+ex:point6 a geo:Point;
+        geo:lat "50.31221"^^xsd:double;
+        geo:long "7.23212"^^xsd:double.
+
+ex:p2PathSeq a rdf:Seq;
+        rdfs:member ex:point4;
+        rdfs:member ex:point5;
+        rdfs:member ex:point6.
+
+ex:p2Path a ngeo:LineString ;
+        ngeo:posList ex:p2PathSeq.
+
+:someProcess_2 a :DeliverStockedProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Sangio Sugar Factory" ;
+        ex:isSubjectOf "Flour" ;
+        ex:processId "3ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p2Path ;
+        ex:hasStartTime "2016-01-20T08:21:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-02-02T08:11:00"^^xsd:datetime ;
+        :hasMetricAG_1 "19" ;
+        :hasMetricAG_2 "13" ;
+        :hasMetricAG_3 "11" ;
+        :hasMetricAG_4 "15" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "10" ;
+        :hasMetricCO_15 "19" ;
+        :hasMetricCO_16 "14" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_33 "100" ;
+        :hasMetricRL_50 "100" ;
+        :hasMetricRL_32 "99" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
+:someProcess_3 a :SourceMakeToOrderProduct ;
         ex:hasCommitDate "2015-11-05" ;
         ex:hasSupplier "Krataska Automotive" ;
         ex:isSubjectOf "BMW 3" ;
@@ -81,29 +127,6 @@ ex:p1Path a ngeo:LineString ;
         :hasMetricRL_50 "100" ;
         :hasMetricRL_32 "90" ;
         :hasMetricRL_34 "99" ;
-        :hasMetricRS_21 "17" ;
-        :hasMetricRS_22 "14" ;
-        :hasMetricRS_24 "10" .
-
-:someProcess_1 a :DeliverStockedProduct ;
-        ex:hasCommitDate "2015-11-05" ;
-        ex:hasSupplier "Sangio Sugar Factory" ;
-        ex:isSubjectOf "Flour" ;
-        ex:processId "3ad9380f-1eb4-4595-857b-1bcf874621bb" ;
-        :hasMetricAG_1 "19" ;
-        :hasMetricAG_2 "13" ;
-        :hasMetricAG_3 "11" ;
-        :hasMetricAG_4 "15" ;
-        :hasMetricAM_2 "17" ;
-        :hasMetricAM_3 "13" ;
-        :hasMetricCO_14 "10" ;
-        :hasMetricCO_15 "19" ;
-        :hasMetricCO_16 "14" ;
-        :hasMetricCO_17 "17" ;
-        :hasMetricRL_33 "100" ;
-        :hasMetricRL_50 "100" ;
-        :hasMetricRL_32 "99" ;
-        :hasMetricRL_34 "99" ;  
         :hasMetricRS_21 "17" ;
         :hasMetricRS_22 "14" ;
         :hasMetricRS_24 "10" .
