@@ -39,7 +39,8 @@ function loadData(store, data) {
             } else {
               const st = moment(res[i].st.value);
               const et = moment(res[i].et.value);
-              const duration = et.from(st);
+				const duration = et.from(st);
+				
               processes[res[i].p.value] = {
                 st,
                 et,
@@ -119,12 +120,20 @@ rdfstore.create((err, store) => {
     store.registerDefaultNamespace(key, val);
   });
 
+	$("#upload-button").click(function() {
+		$("#dataFile").click();
+	});
+	console.log(store);
   $('#queryForm').submit({ store }, submitQuery);
 
   $('#dataFile').change({ store }, readText);
 
   $('#analyseForm').submit({ store }, submitAnalyse);
 });
+
+
+// fullscreen map
+// $('#mapid').css('height', $(window).height() + 'px');
 
 
 module.exports = {
