@@ -3,11 +3,11 @@ import rdfstore from 'rdfstore/dist/rdfstore';
 import _ from 'lodash';
 import $ from 'jquery';
 import moment from 'moment';
-import 'material-design-lite';
+// import 'material-design-lite';
 import map from './map';
 import * as config from './config';
-
-import 'material-design-lite/material.css';
+import * as sem from  'semantic-ui/dist/semantic.css';
+// import 'material-design-lite/material.css';
 import './index.css';
 
 
