@@ -43,3 +43,18 @@ dist
 docs/dist
 node_modules
 npm-debug.log
+
+
+# emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
