@@ -1,6 +1,4 @@
-'use strict';
-
-const PROCESSES = {
+export const PROCESSES = {
   ALL: `
     SELECT ?p ?st ?et ?mem ?lat ?long {
       ?p a scor:DeliverStockedProduct;
@@ -21,10 +19,5 @@ const PROCESSES = {
       FILTER(regex(str(?pn), ":productName")).
     }
     GROUP BY ?p
-    `
+    `,
 };
-
-
-export {
-  PROCESSES
-}
