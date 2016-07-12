@@ -2,17 +2,15 @@ import 'babel-polyfill';
 import _ from 'lodash';
 import $ from 'jquery';
 import moment from 'moment';
-// import 'material-design-lite';
-import map from './map';
 import 'semantic-ui/dist/semantic.css';
-// import 'material-design-lite/material.css';
-import './index.css';
+
+import map from './map';
 import * as db from './store';
+import './index.css';
 
 
 // open file from uploader input and load data into rdfstore
 function openFile() {
-  console.log('HIT');
   const reader = new FileReader();
 
   let content = '';
@@ -23,7 +21,7 @@ function openFile() {
       content = ev.target.result;
       db.setData(content);
 
-      db.query_all().then(t => {
+      db.queryAll().then(t => {
         displayAllProcesses(t);
         console.log(t);
       });
@@ -80,10 +78,10 @@ function submitAnalyse(e) {
   console.log('submit analyze button clicked');
 
   const productName = $('#analyseForm :input[name=productNameInput]')[0].value;
-  //  const startTime = $('#analyseForm :input[name=startTimeInput]')[0].value;
-  //  const endTime = $('#analyseForm :input[name=endTimeInput]')[0].value;
+  const startTime = $('#analyseForm :input[name=startTimeInput]')[0].value;
+  const endTime = $('#analyseForm :input[name=endTimeInput]')[0].value;
 
-  db.query_q1(productName).then(res => {
+  db.buildQuery('METRIC1', { productName, startTime, endTime }).then(res => {
     console.log(res);
     res.forEach((v) => {
       map.addLabelToProcess(v.p.value, `<li>${v.metricResult.value}</li>`);

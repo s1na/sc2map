@@ -1,8 +1,10 @@
 import rdfstore from 'rdfstore/dist/rdfstore';
-import * as config from './config';
 import _ from 'lodash';
 import Q from 'q';
-import * as QUERIES from './queries.js';
+
+import * as config from './config';
+import queries from './queries.js';
+
 
 let store = null;
 let data = null;
@@ -14,10 +16,12 @@ function createInstance() {
 
   rdfstore.create((err, s) => {
     s.registerDefaultProfileNamespaces();
+    let registered = 0;
     _.forOwn(config.prefixes, (val, key) => {
       s.registerDefaultNamespace(key, val);
+      registered += 1;
+      if (_.keys(config.prefixes).length === registered) deferred.resolve(s);
     });
-    deferred.resolve(s);
   });
 
   return deferred.promise;
@@ -43,7 +47,6 @@ function runQuery(query) {
         console.debug(err); // TODO think of a streamlined way of raising and reporting errors
         return;
       }
-
       deferred.resolve(res);
     });
   });
@@ -78,12 +81,35 @@ export function load() {
 }
 
 export function queryAll() {
-  return Q.fcall(runQuery.bind(null, QUERIES.PROCESSES.ALL));
+  return Q.fcall(runQuery.bind(null, queries.ALL));
 }
 
-export function queryQ1(productName) {
-  let query = QUERIES.PROCESSES.QUERY1;
-  // TODO put params into query
-  query = query.replace(/:productName/, productName);
+export function buildQuery(metric, props) {
+  console.log(queries);
+  const select = [queries[metric].SELECT];
+  const triplesList = queries[metric].TRIPLES.slice();
+  const filtersList = [];
+  console.log(select, triplesList, filtersList);
+
+  if (props.productName) {
+    triplesList.push(queries.PROPS.PRODUCT_NAME.TRIPLES);
+    filtersList.push(queries.PROPS.PRODUCT_NAME.FILTERS({ productName: props.productName }));
+  }
+  if (props.startTime) {
+    triplesList.push(queries.PROPS.START_TIME.TRIPLES);
+    filtersList.push(queries.PROPS.START_TIME.FILTERS({ startTime: props.startTime }));
+  }
+  if (props.endTime) {
+    triplesList.push(queries.PROPS.END_TIME.TRIPLES);
+    filtersList.push(queries.PROPS.END_TIME.FILTERS({ endTime: props.endTime }));
+  }
+
+  const query = queries.BASE({
+    select: select.join('\n'),
+    triples: triplesList.join('\n'),
+    filters: filtersList.join('\n'),
+  });
+
+  console.log(query);
   return Q.fcall(runQuery.bind(null, query));
 }
