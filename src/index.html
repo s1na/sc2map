@@ -44,27 +44,34 @@
 	  <div class="four wide column sc2-util-container">
 
 		<form id="analyseForm" class="ui form">
-          <div class="field">
-              <label type="text" for="productNameInput">Product name</label>
-              <input id="productNameInput" name="productNameInput" type="text" />
-		  </div>
-		  <div class="field">
-			<label type="text" for="startTimeInput">Start time</label>
-            <input id="startTimeInput" name="startTimeInput" type="text" />
-		  </div>
-		  <div class="field">
-              <label for="endTimeInput">End Time</label>
-              <input id="endTimeInput" name="endTimeInput" type="text" />
-		  </div>
-      <div class="field">
-              <label for="metricInput">Metric</label>
-              <input id="metricInput" name="metricInput" type="text" />
-      </div>
-		  
-          <input type="submit" class="ui button" value="Analyse" />
-        </form>
 
+      <div class="field">
+        <label for="metricInput">Metric</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="metricInput">
+          <i class="dropdown icon"></i>
+          <div class="default text">Metric</div>
+          <div class="menu">
+            <div class="item" data-value="METRIC1">METRIC1</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label type="text" for="productNameInput">Product name</label>
+        <input id="productNameInput" name="productNameInput" type="text" />
+		  </div>
+		  <div class="field">
+        <label type="text" for="startTimeInput">Start time</label>
+        <input id="startTimeInput" name="startTimeInput" type="text" />
+		  </div>
+		  <div class="field">
+        <label for="endTimeInput">End Time</label>
+        <input id="endTimeInput" name="endTimeInput" type="text" />
+		  </div>
+      <input type="submit" class="ui button" value="Analyse" />
+    </form>
 	  </div>
 	</main>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   </body>
 </html>

@@ -1,8 +1,11 @@
+/* global $ */
 import 'babel-polyfill';
 import _ from 'lodash';
-import $ from 'jquery';
+// import $ from 'jquery';
+// import jQuery from 'jquery';
 import moment from 'moment';
 import map from './map';
+import 'semantic-ui/dist/semantic.js';
 import 'semantic-ui/dist/semantic.css';
 
 import * as db from './store';
@@ -100,6 +103,9 @@ $('#dataFile').change(openFile);
 
 $('#analyseForm').submit(submitAnalyse);
 
+$(document).ready(() => {
+  $('.ui.dropdown').dropdown();
+});
 
 module.exports = {
   openFile,
