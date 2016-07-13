@@ -2,9 +2,9 @@ import 'babel-polyfill';
 import _ from 'lodash';
 import $ from 'jquery';
 import moment from 'moment';
+import map from './map';
 import 'semantic-ui/dist/semantic.css';
 
-import map from './map';
 import * as db from './store';
 import './index.css';
 
