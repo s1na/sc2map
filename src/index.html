@@ -44,11 +44,22 @@
 	  <div class="four wide column sc2-util-container">
 
 		<form id="analyseForm" class="ui form">
-
+      <div class="field">
+        <label for="processTypeInput">Process type</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="processTypeInput" value="DeliverStockedProduct">
+          <i class="dropdown icon"></i>
+          <div class="default text">Process type</div>
+          <div class="menu">
+            <div class="item" data-value="DeliverStockedProduct">DeliverStockedProduct</div>
+            <div class="item" data-value="SourceMakeToOrderProduct">SourceMakeToOrderProduct</div>
+          </div>
+        </div>
+      </div>
       <div class="field">
         <label for="metricInput">Metric</label>
         <div class="ui selection dropdown">
-          <input type="hidden" name="metricInput">
+          <input type="hidden" name="metricInput" value="METRIC1">
           <i class="dropdown icon"></i>
           <div class="default text">Metric</div>
           <div class="menu">

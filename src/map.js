@@ -1,8 +1,6 @@
 import leaflet from 'leaflet';
-// import 'leaflet.label/dist/leaflet.label.js';
 
 import 'leaflet/dist/leaflet.css';
-import 'leaflet.label/dist/leaflet.label.css';
 import './index.css';
 
 

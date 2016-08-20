@@ -1,6 +1,7 @@
 import rdfstore from 'rdfstore/dist/rdfstore';
 import _ from 'lodash';
 import Q from 'q';
+import $ from 'jquery';
 
 import * as config from './config';
 import queries from './queries.js';
@@ -73,7 +74,22 @@ export function load() {
 
     store.load('text/turtle', data, (err, n) => {
       console.log(`Loaded ${n} triples`);
-      deferred.resolve(n);
+      $.ajax({
+        type: 'get',
+        url: 'https://raw.githubusercontent.com/vocol/scor/master/scor.ttl',
+        data: {},
+        xhrfields: {
+          withcredentials: false,
+        },
+        crossdomain: true,
+        success: (res) => {
+          store.load('text/turtle', res, (err, m) => {
+            if (err) console.log(err);
+            console.log(`loaded ${m} triples`);
+            deferred.resolve(n);
+          });
+        },
+      });
     });
   });
 
@@ -84,7 +100,7 @@ export function queryAll() {
   return Q.fcall(runQuery.bind(null, queries.ALL));
 }
 
-export function buildQuery(metric, props) {
+export function buildQuery(processType, metric, props) {
   console.log(queries);
   const select = [queries[metric].SELECT];
   const triplesList = queries[metric].TRIPLES.slice();
@@ -105,6 +121,7 @@ export function buildQuery(metric, props) {
   }
 
   const query = queries.BASE({
+    processType: processType,
     select: select.join('\n'),
     triples: triplesList.join('\n'),
     filters: filtersList.join('\n'),

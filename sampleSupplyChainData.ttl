@@ -108,11 +108,34 @@ ex:p2Path a ngeo:LineString ;
         :hasMetricRS_22 "14" ;
         :hasMetricRS_24 "10" .
 
+ex:point7 a geo:Point;
+        geo:lat "50.42352"^^xsd:double;
+        geo:long "7.10237"^^xsd:double.
+
+ex:point8 a geo:Point;
+        geo:lat "50.62037"^^xsd:double;
+        geo:long "7.02687"^^xsd:double.
+
+ex:point9 a geo:Point;
+        geo:lat "50.27221"^^xsd:double;
+        geo:long "7.32212"^^xsd:double.
+
+ex:p3PathSeq a rdf:Seq;
+        rdfs:member ex:point7;
+        rdfs:member ex:point8;
+        rdfs:member ex:point9.
+
+ex:p3Path a ngeo:LineString ;
+        ngeo:posList ex:p3PathSeq.
+
 :someProcess_3 a :SourceMakeToOrderProduct ;
         ex:hasCommitDate "2015-11-05" ;
         ex:hasSupplier "Krataska Automotive" ;
         ex:isSubjectOf "BMW 3" ;
         ex:processId "1ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p3Path ;
+        ex:hasStartTime "2016-04-29T08:21:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-05-07T08:11:00"^^xsd:datetime ;
         :hasMetricAG_1 "19" ;
         :hasMetricAG_2 "13" ;
         :hasMetricAG_3 "11" ;

@@ -84,9 +84,10 @@ function submitAnalyse(e) {
   const startTime = $('#analyseForm :input[name=startTimeInput]')[0].value;
   const endTime = $('#analyseForm :input[name=endTimeInput]')[0].value;
   const metricName = $('#analyseForm :input[name=metricInput]')[0].value;
+  const processType = $('#analyseForm :input[name=processTypeInput]')[0].value;
 
 
-  db.buildQuery(metricName, { productName, startTime, endTime }).then(res => {
+  db.buildQuery(processType, metricName, { productName, startTime, endTime }).then(res => {
     console.log(res);
     res.forEach((v) => {
       map.addLabelToProcess(v.p.value, `<li>${v.metricResult.value}</li>`);

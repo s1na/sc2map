@@ -3,19 +3,27 @@ import _ from 'lodash';
 
 export default {
   ALL: `
-    SELECT ?p ?st ?et ?mem ?lat ?long {
-      ?p a scor:DeliverStockedProduct;
-         ex:hasStartTime ?st;
-         ex:hasEndTime ?et;
-         ex:hasPath/ngeo:posList ?l.
+    SELECT DISTINCT ?p ?st ?et ?lat ?long {
+      {
+        ?pType rdfs:subClassOf scor:Deliver;
+          rdfs:label ?label.
+      } UNION {
+        ?pType rdfs:subClassOf scor:Source;
+          rdfs:label ?label.
+      }
+      ?p a ?pType;
+        ex:hasStartTime ?st;
+        ex:hasEndTime ?et;
+        ex:hasPath/ngeo:posList ?l.
       ?l rdfs:member ?mem.
       ?mem geo:lat ?lat;
-           geo:long ?long.
+        geo:long ?long.
+
     }`,
   BASE: _.template(`
     SELECT ?p <%= select %>
     WHERE {
-      ?p a scor:DeliverStockedProduct .
+      ?p a scor:<%= processType %> .
       <%= triples %>
       <%= filters %>
     }
