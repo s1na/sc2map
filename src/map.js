@@ -63,7 +63,7 @@ class Map {
       p.markers.push(marker);
     });
     p.line = leaflet.polyline(latlngs, { color }).addTo(this.el)
-      .bindPopup(p.info);
+      .bindTooltip(p.info, { permanent: true });
 
     this.processes[uid] = p;
   }
@@ -77,7 +77,7 @@ class Map {
         ${label}
       </ul>
       `;
-    this.processes[uid].line.bindPopup(this.processes[uid].info);
+    this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: true });
   }
 }
 
