@@ -93,7 +93,6 @@ function query_q1(productName) {
 }
 
 export {
-  load,
   query_all,
   query_q1,
   setData
