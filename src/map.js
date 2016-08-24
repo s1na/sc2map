@@ -7,6 +7,8 @@ import './index.css';
 class Map {
   constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
     leaflet.Icon.Default.imagePath = '/leaflet/dist/images';
+    //leaflet.Icon.Default.imagePath = '../images';
+
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
 
