@@ -1,14 +1,14 @@
 import leaflet from 'leaflet';
-// import 'leaflet.label/dist/leaflet.label.js';
 
 import 'leaflet/dist/leaflet.css';
-import 'leaflet.label/dist/leaflet.label.css';
 import './index.css';
 
 
 class Map {
-	constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
+  constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
     leaflet.Icon.Default.imagePath = '/leaflet/dist/images';
+    //leaflet.Icon.Default.imagePath = '../images';
+
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
 
@@ -63,7 +63,7 @@ class Map {
       p.markers.push(marker);
     });
     p.line = leaflet.polyline(latlngs, { color }).addTo(this.el)
-      .bindPopup(p.info);
+      .bindTooltip(p.info, { permanent: false });
 
     this.processes[uid] = p;
   }
@@ -77,7 +77,7 @@ class Map {
         ${label}
       </ul>
       `;
-    this.processes[uid].line.bindPopup(this.processes[uid].info);
+    this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: false });
   }
 }
 

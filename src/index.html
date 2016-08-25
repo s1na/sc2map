@@ -6,33 +6,15 @@
     <title>SC2Map</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
-  <body class="--grey-100 mdl-color-text--grey-700 mdl-base">
-	<!-- <header> -->
-	<!-- </header> -->
-	<!-- <div class="ui grid"> -->
-	<!--   <div class="four wide column">1</div> -->
-	<!--   <div class="four wide column">2</div> -->
-	<!--   <div class="four wide column">3</div> -->
-	<!--   <div class="four wide column"><button class="ui button">Hi</button></div> -->
-	<!-- </div> -->
-
+  <body>
 	<main class="ui grid">
-	  <div class="sixteen wide column" style="padding-bottom:0px;">
-		<div class="ui secondary  menu">
-		  <a class="active item">
-			Query 1
-		  </a>
-		  <a class="item">
-			Query 2 
-		  </a>
-		  <a class="item">
-			Query 3
-		  </a>
+	  <div class="sixteen wide column">
+		<div class="ui secondary menu">
 		  <a class="item">
 			<div>
               <!-- <label for="dataFile"><i>attach_file</i></label> -->
-			  <button class="ui button" id="upload-button">Upload Data</button>
-			  <input id="dataFile" type="file" style="display: none;" />
+			  <button class="ui primary button" id="upload-button">Upload Data</button>
+			  <input id="dataFile" type="file"/>
             </div>
 
 			</a>
@@ -53,105 +35,46 @@
 	  <div class="four wide column sc2-util-container">
 
 		<form id="analyseForm" class="ui form">
-          <div class="field">
-              <label type="text" for="productNameInput">Product name</label>
-              <input id="productNameInput" name="productNameInput" type="text" />
+      <div class="field">
+        <label for="processTypeInput">Process type</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="processTypeInput" value="DeliverStockedProduct">
+          <i class="dropdown icon"></i>
+          <div class="default text">Process type</div>
+          <div class="menu">
+            <div class="item" data-value="DeliverStockedProduct">DeliverStockedProduct</div>
+            <div class="item" data-value="SourceMakeToOrderProduct">SourceMakeToOrderProduct</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="metricInput">Metric</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="metricInput" value="METRIC1">
+          <i class="dropdown icon"></i>
+          <div class="default text">Metric</div>
+          <div class="menu">
+            <div class="item" data-value="METRIC1">METRIC1</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label type="text" for="productNameInput">Product name</label>
+        <input id="productNameInput" name="productNameInput" type="text" />
 		  </div>
 		  <div class="field">
-			<label type="text" for="startTimeInput">Start time</label>
-            <input id="startTimeInput" name="startTimeInput" type="text" />
+        <label type="text" for="startTimeInput">Start time</label>
+        <input id="startTimeInput" name="startTimeInput" type="text" />
 		  </div>
 		  <div class="field">
-              <label for="endTimeInput">End Time</label>
-              <input id="endTimeInput" name="endTimeInput" type="text" />
+        <label for="endTimeInput">End Time</label>
+        <input id="endTimeInput" name="endTimeInput" type="text" />
 		  </div>
-		  
-          <input type="submit" class="ui button" value="Analyse" />
-        </form>
-
+      <input type="submit" class="ui button" value="Analyse" />
+    </form>
 	  </div>
+	  <div>Factory icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 	</main>
-	
-      <!-- <main> -->
-      <!--   <div class="page-content"> -->
-	  <!-- 	  <button class="ui button">Hi</button> -->
-      <!--     <section class="section--center mdl-grid mdl-grid--no-spacing"> -->
-      <!--       <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-cell--middle"> -->
-      <!--         <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing"> -->
-      <!--           <h4 class="mdl-cell mdl-cell--12-col">Map</h4> -->
-      <!--           <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--             <div class="mdl-cell mdl-cell--12-col"> -->
-      <!--               <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                 <div class="mdl-cell mdl-cell--12-col mdl-cell--middle"> -->
-
-      <!--                   <div id="mapid"></div> -->
-      <!--                 </div> -->
-      <!--               </div> -->
-      <!--               <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                 <div class="mdl-cell mdl-cell--9-col mdl-cell--middle"> -->
-      <!--                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--file"> -->
-      <!--                     <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file"> -->
-      <!--                       <label for="dataFile"><i class="material-icons">attach_file</i></label> -->
-      <!--                       <input id="dataFile" type="file" style="display: none;" /> -->
-      <!--                     </div> -->
-      <!--                     <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly /> -->
-	  
-      <!--                   </div> -->
-      <!--                 </div> -->
-      <!--               </div> -->
-      <!--               <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                 <div class="mdl-cell mdl-cell--9-col mdl-cell--middle"> -->
-      <!--                   <form id="queryForm"> -->
-      <!--                     <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                       <div class="mdl-cell mdl-cell--10-col"> -->
-      <!--                         <div class="mdl-textfield mdl-js-textfield mdl-text-field--floating-label"> -->
-      <!--                           <textarea id="queryInput" name="query" rows="3" class="mdl-textfield__input"></textarea> -->
-      <!--                           <label class="mdl-textfield__label" for="queryInput">Custom query...</label> -->
-      <!--                         </div> -->
-      <!--                       </div> -->
-      <!--                       <div class="mdl-cell mdl-cell--2-col"> -->
-      <!--                         <button type="submit" class="mdl-button mdl-js-button mdl-button-primary mdl-button-icon"><i class="material-icons">done</i></button> -->
-      <!--                       </div> -->
-      <!--                     </div> -->
-      <!--                   </form> -->
-      <!--                 </div> -->
-      <!--               </div> -->
-      <!--               <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                 <div class="mdl-cell mdl-cell--9-col mdl-cell--middle"> -->
-      <!--                   <form id="analyseForm"> -->
-      <!--                     <div class="mdl-grid mdl-grid--no-spacing"> -->
-      <!--                       <div class="mdl-textfield mdl-js-textfield"> -->
-      <!--                         <label class="mdl-textfield__label" type="text" for="productNameInput">Product name</label> -->
-      <!--                         <input class="mdl-textfield__input" id="productNameInput" name="productNameInput" type="text" /> -->
-      <!--                       </div> -->
-      <!--                       <div class="mdl-textfield mdl-js-textfield"> -->
-      <!--                         <label class="mdl-textfield__label" type="text" for="startTimeInput">Start time</label> -->
-      <!--                         <input class="mdl-textfield__input" id="startTimeInput" name="startTimeInput" type="text" /> -->
-      <!--                       </div> -->
-      <!--                       <div class="mdl-textfield mdl-js-textfield"> -->
-      <!--                         <label class="mdl-textfield__label" for="endTimeInput">End Time</label> -->
-      <!--                         <input class="mdl-textfield__input" id="endTimeInput" name="endTimeInput" type="text" /> -->
-      <!--                       </div> -->
-      <!--                       <button type="submit" class="mdl-button mdl-js-button mdl-button-primary">Analyse</button> -->
-      <!--                     </div> -->
-      <!--                   </form> -->
-      <!--                 </div> -->
-      <!--               </div> -->
-      <!--             </div> -->
-      <!--           </div> -->
-      <!--         </div> -->
-      <!--       </div> -->
-      <!--       <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="mapenu"> -->
-      <!--         <i class="material-icons">more_vert</i> -->
-      <!--       </button> -->
-      <!--       <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="mapMenu"> -->
-      <!--         <li class="mdl-menu__item">Lorem</li> -->
-      <!--         <li class="mdl-menu__item" disabled>Ipsum</li> -->
-      <!--         <li class="mdl-menu__item">Dolor</li> -->
-      <!--       </ul> -->
-      <!--     </section> -->
-      <!--   </div> -->
-      <!-- </main> -->
-    <!-- </div> -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   </body>
 </html>
