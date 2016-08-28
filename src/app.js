@@ -23,10 +23,9 @@ function openFile() {
     reader.onload = (ev) => {
       content = ev.target.result;
       db.setData(content);
-
       db.queryAll().then(t => {
         displayAllProcesses(t);
-        console.log(t);
+      console.log(t);
       });
     };
 
