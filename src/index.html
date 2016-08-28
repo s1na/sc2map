@@ -28,7 +28,7 @@
 		  </div>
 		</div>
 	  </div>
-	  
+
 	  <div class="twelve wide column sc2-map-container" style="padding:0;">
 		<div id="mapid"></div>
 	  </div>
@@ -47,29 +47,43 @@
           </div>
         </div>
       </div>
+
+      <!--<div class="field">-->
+        <!--<label for="metricInput">Metric</label>-->
+        <!--<div class="ui selection dropdown">-->
+          <!--<input type="hidden" name="metricInput" value="METRIC1">-->
+          <!--<i class="dropdown icon"></i>-->
+          <!--<div class="default text">Metric</div>-->
+          <!--<div class="menu">-->
+            <!--<div class="item" data-value="METRIC1">METRIC1</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
       <div class="field">
-        <label for="metricInput">Metric</label>
-        <div class="ui selection dropdown">
-          <input type="hidden" name="metricInput" value="METRIC1">
-          <i class="dropdown icon"></i>
-          <div class="default text">Metric</div>
-          <div class="menu">
-            <div class="item" data-value="METRIC1">METRIC1</div>
-          </div>
-        </div>
+        <label for="metricInput">Metrices selection:</label>
+        <select for="Metrices" multiple="" class="ui fluid dropdown">
+        <option value="time">Duration</option>
+        <option value="distance">Distance</option>
+        <option value="price">Price</option>
+      </select>
       </div>
+
       <div class="field">
         <label type="text" for="productNameInput">Product name</label>
         <input id="productNameInput" name="productNameInput" type="text" />
 		  </div>
+
 		  <div class="field">
         <label type="text" for="startTimeInput">Start time</label>
         <input id="startTimeInput" name="startTimeInput" type="text" />
 		  </div>
+
 		  <div class="field">
         <label for="endTimeInput">End Time</label>
         <input id="endTimeInput" name="endTimeInput" type="text" />
 		  </div>
+
       <input type="submit" class="ui button" value="Analyse" />
     </form>
 	  </div>
