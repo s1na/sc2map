@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SC2Map</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  </head>
-  <body>
-	<main class="ui grid">
-	  <div class="sixteen wide column">
-		<div class="ui secondary menu">
-		  <a class="item">
-			<div>
-              <!-- <label for="dataFile"><i>attach_file</i></label> -->
-			  <button class="ui primary button" id="upload-button">Upload Data</button>
-			  <input id="dataFile" type="file"/>
-            </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SC2Map</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<main class="ui grid">
+  <div class="sixteen wide column">
+    <div class="ui secondary menu">
 
-			</a>
-		  <div class="right menu">
-			<div class="item">
-			  <div class="ui icon input">
-				<input type="text" placeholder="Search...">
-				<i class="search link icon"></i>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
+      <a class="item">
+        <div>
+          <button class="ui primary button" id="upload-button">Upload Data</button>
+          <input id="dataFile" type="file"/>
+        </div>
+      </a>
 
-	  <div class="twelve wide column sc2-map-container" style="padding:0;">
-		<div id="mapid"></div>
-	  </div>
-	  <div class="four wide column sc2-util-container">
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <i class="large map outline icon"></i>
+          </div>
+        </div>
+        <div class="item">
+          <p>SC2MAP Project</p>
+        </div>
+      </div>
 
-		<form id="analyseForm" class="ui form">
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="twelve wide column sc2-map-container" style="padding:0;">
+    <div id="mapid"></div>
+  </div>
+  <div class="four wide column sc2-util-container">
+
+    <form id="analyseForm" class="ui form">
       <div class="field">
         <label for="processTypeInput">Process type</label>
         <div class="ui selection dropdown">
@@ -49,46 +61,49 @@
       </div>
 
       <!--<div class="field">-->
-        <!--<label for="metricInput">Metric</label>-->
-        <!--<div class="ui selection dropdown">-->
-          <!--<input type="hidden" name="metricInput" value="METRIC1">-->
-          <!--<i class="dropdown icon"></i>-->
-          <!--<div class="default text">Metric</div>-->
-          <!--<div class="menu">-->
-            <!--<div class="item" data-value="METRIC1">METRIC1</div>-->
-          <!--</div>-->
-        <!--</div>-->
+      <!--<label for="metricInput">Metric</label>-->
+      <!--<div class="ui selection dropdown">-->
+      <!--<input type="hidden" name="metricInput" value="METRIC1">-->
+      <!--<i class="dropdown icon"></i>-->
+      <!--<div class="default text">Metric</div>-->
+      <!--<div class="menu">-->
+      <!--<div class="item" data-value="METRIC1">METRIC1</div>-->
+      <!--</div>-->
+      <!--</div>-->
       <!--</div>-->
 
       <div class="field">
         <label for="metricInput">Metrices selection:</label>
         <select for="Metrices" multiple="" class="ui fluid dropdown">
-        <option value="time">Duration</option>
-        <option value="distance">Distance</option>
-        <option value="price">Price</option>
-      </select>
+          <option value="time">Duration</option>
+          <option value="distance">Distance</option>
+          <option value="price">Price</option>
+        </select>
       </div>
 
       <div class="field">
         <label type="text" for="productNameInput">Product name</label>
-        <input id="productNameInput" name="productNameInput" type="text" />
-		  </div>
+        <input id="productNameInput" name="productNameInput" type="text"/>
+      </div>
 
-		  <div class="field">
+      <div class="field">
         <label type="text" for="startTimeInput">Start time</label>
-        <input id="startTimeInput" name="startTimeInput" type="text" />
-		  </div>
+        <input id="startTimeInput" name="startTimeInput" type="text"/>
+      </div>
 
-		  <div class="field">
+      <div class="field">
         <label for="endTimeInput">End Time</label>
-        <input id="endTimeInput" name="endTimeInput" type="text" />
-		  </div>
+        <input id="endTimeInput" name="endTimeInput" type="text"/>
+      </div>
 
-      <input type="submit" class="ui button" value="Analyse" />
+      <input type="submit" class="ui button" value="Analyse"/>
     </form>
-	  </div>
-	  <div>Factory icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-	</main>
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-  </body>
+  </div>
+  <div>Factory icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
+    href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a
+    href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+  </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</body>
 </html>
