@@ -94,8 +94,9 @@ function submitAnalyse(e) {
 
   db.buildQuery(processType, metricName, { productName, startTime, endTime }).then(res => {
     console.log(res);
-    res.forEach((v) => {
-      map.addLabelToProcess(v.p.value, `<li>${v.metricResult.value}</li>`);
+      res.forEach((v) => {
+
+      map.addLabelToProcess(v.p.value, `${v.metricResult.value}`);
     });
   });
 }
