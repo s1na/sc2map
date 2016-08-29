@@ -1,8 +1,7 @@
 import leaflet from 'leaflet';
-
 import 'leaflet/dist/leaflet.css';
 import './index.css';
-
+import $ from 'jquery';
 
 class Map {
   constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
@@ -30,7 +29,8 @@ class Map {
       '#e74c3c', '#ecf0f1', '#2c3e50', '#f1c40f', '#1abc9c',
     ];
     this.usedColors = [];
-    this.processes = {};
+      this.processes = {};
+
   }
 
   onMapClick(e) {
@@ -58,16 +58,18 @@ class Map {
         <li>Duration: ${p.duration}</li>
       </ul>
       `;
-
+	  
     p.points.forEach((val, i) => {
-      const marker = leaflet.marker(val).addTo(this.el);
-      marker.bindPopup(`Node ${i}`);
+		const marker = leaflet.marker(val).addTo(this.el);
+		
+		marker.bindPopup(`Node ${i}`);
+		
       latlngs.push(marker.getLatLng());
       p.markers.push(marker);
     });
 	  
       p.line = leaflet.polyline(latlngs, { color:color, weight: 10, opacity: 0.7 }).addTo(this.el)
-      .bindTooltip(p.info, { permanent: false });
+		  .bindTooltip(p.info, {interactive: true, offset:[15, 15], sticky: true});
 
     this.processes[uid] = p;
   }
