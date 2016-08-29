@@ -69,21 +69,25 @@ class Map {
     });
 	  
       p.line = leaflet.polyline(latlngs, { color:color, weight: 10, opacity: 0.7 }).addTo(this.el)
-		  .bindTooltip(p.info, {interactive: true, offset:[15, 15], sticky: true});
+		  .bindTooltip(p.info, {interactive: true, sticky: true});
 
     this.processes[uid] = p;
   }
 
   addLabelToProcess(uid, label) {
-    const lines = this.processes[uid].info.split('\n');
-    lines.pop();
-    lines.pop();
+      const lines = this.processes[uid].info.split('\n');
+	  // Why we pop twice?
+      lines.pop();
+      lines.pop();
+	  
+	  console.log(this.processes[uid].line.bindTooltip(label + '', {permanent: true}));
+	  
     this.processes[uid].info = `
       ${lines.join('\n')}
         ${label}
       </ul>
       `;
-    this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: false });
+      this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: false });
   }
 }
 
