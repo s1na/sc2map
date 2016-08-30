@@ -35,7 +35,6 @@ class Map {
     //specifying new icon to present the anchors
     var greenIcon = L.icon({
       iconUrl: 'leaf-green.png',
-      //shadowUrl: 'leaf-shadow.png',
 
       iconSize:     [38, 95], // size of the icon
       shadowSize:   [50, 64], // size of the shadow
@@ -49,7 +48,7 @@ class Map {
   onMapClick(e) {
     this.popup
       .setLatLng(e.latlng)
-      .setContent(`You clicked the map at ${e.latlng.toString()}`)
+      .setContent(`You clicked the map at geo: ${e.latlng.toString()}`)
       .openOn(this.el);
   }
 
@@ -60,19 +59,18 @@ class Map {
     const color = this.colors.pop();
     this.usedColors.push(color);
     p.color = color;
-
     p.markers = [];
     p.info = `
       <ul>
-        <li>Start time:  ${p.et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
-        <li>End time:  ${p.st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+        <li>Start Time:  ${p.et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
+        <li>End Time:  ${p.st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
         <li>Duration: ${p.duration}</li>
       </ul>
       `;
 
     p.points.forEach((val, i) => {
       const marker = leaflet.marker(val).addTo(this.el);
-      marker.bindPopup(`Node ${i}`);
+      marker.bindPopup(`Node number: ${i}`);
       latlngs.push(marker.getLatLng());
       p.markers.push(marker);
     });
