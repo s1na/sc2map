@@ -55,6 +55,7 @@ class Map {
   addProcess(uid, obj) {
     const p = obj;
     const latlngs = [];
+    const names = [];
 
 	  // choose a different color each time.
 	  // DANGER we might ran out of colors. better choose round robin or whatever...
@@ -74,9 +75,11 @@ class Map {
     p.points.forEach((val, i) => {
 		const marker = leaflet.marker(val).addTo(this.el);
 
-		marker.bindPopup(`Node ${i}`);
+      marker.bindPopup(p.names[i]);
 
       latlngs.push(marker.getLatLng());
+      // maybe useful for search
+      names.push(p.names[i]);
       p.markers.push(marker);
     });
 

@@ -18,15 +18,18 @@
 
 ex:point1 a geo:Point;
         geo:lat "50.77512"^^xsd:double;
-        geo:long "7.18437"^^xsd:double.
+        geo:long "7.18437"^^xsd:double;
+        ex:hasId "Factory1".   
 
 ex:point2 a geo:Point;
         geo:lat "50.70037"^^xsd:double;
-        geo:long "7.08687"^^xsd:double.
+        geo:long "7.08687"^^xsd:double;
+        ex:hasId "Factory2".
 
 ex:point3 a geo:Point;
         geo:lat "50.73221"^^xsd:double;
-        geo:long "7.10212"^^xsd:double.
+        geo:long "7.10212"^^xsd:double;
+        ex:hasId "Factory3".
 
 ex:p1PathSeq a rdf:Seq;
         rdfs:member ex:point1;
@@ -64,15 +67,18 @@ ex:p1Path a ngeo:LineString ;
 
 ex:point4 a geo:Point;
         geo:lat "50.57512"^^xsd:double;
-        geo:long "6.88437"^^xsd:double.
+        geo:long "6.88437"^^xsd:double;
+        ex:hasId "Factory4".
 
 ex:point5 a geo:Point;
         geo:lat "50.80037"^^xsd:double;
-        geo:long "7.52687"^^xsd:double.
+        geo:long "7.52687"^^xsd:double;
+        ex:hasId "Factory5".
 
 ex:point6 a geo:Point;
         geo:lat "50.31221"^^xsd:double;
-        geo:long "7.23212"^^xsd:double.
+        geo:long "7.23212"^^xsd:double;
+        ex:hasId "Factory6".
 
 ex:p2PathSeq a rdf:Seq;
         rdfs:member ex:point4;
@@ -110,15 +116,18 @@ ex:p2Path a ngeo:LineString ;
 
 ex:point7 a geo:Point;
         geo:lat "50.42352"^^xsd:double;
-        geo:long "7.10237"^^xsd:double.
+        geo:long "7.10237"^^xsd:double;
+        ex:hasId "Factory7".
 
 ex:point8 a geo:Point;
         geo:lat "50.62037"^^xsd:double;
-        geo:long "7.02687"^^xsd:double.
+        geo:long "7.02687"^^xsd:double;
+        ex:hasId "Factory8".
 
 ex:point9 a geo:Point;
         geo:lat "50.27221"^^xsd:double;
-        geo:long "7.32212"^^xsd:double.
+        geo:long "7.32212"^^xsd:double;
+        ex:hasId "Factory9".
 
 ex:p3PathSeq a rdf:Seq;
         rdfs:member ex:point7;

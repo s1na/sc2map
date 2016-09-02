@@ -45,6 +45,7 @@ function displayAllProcesses(res) {
     for (let i = 0; i < res.length; i++) {
       if (res[i].p.value in processes) {
         processes[res[i].p.value].points.push([res[i].lat.value, res[i].long.value]);
+        processes[res[i].p.value].names.push(res[i].name.value);
       } else {
         const st = moment(res[i].st.value);
         const et = moment(res[i].et.value);
@@ -55,6 +56,7 @@ function displayAllProcesses(res) {
           et,
           duration,
           points: [[res[i].lat.value, res[i].long.value]],
+          names: [res[i].name.value],
         };
       }
     }
