@@ -101,7 +101,9 @@ export function queryAll() {
 }
 
 export function buildQuery(processType, metric, props) {
-  console.log(queries);
+	console.log('here', processType ,metric, props);
+	// this is to avoid metric undefined, when it is small case here.. 
+	metric = metric.toUpperCase();
   const select = [queries[metric].SELECT];
   const triplesList = queries[metric].TRIPLES.slice();
   const filtersList = [];

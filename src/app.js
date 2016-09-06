@@ -92,7 +92,8 @@ function formatDate(dateStr) {
 }
 
 function submitAnalyse(e) {
-  if (e.preventDefault) e.preventDefault();
+	if (e.preventDefault)
+		e.preventDefault();
 
 	// they were like this in the past
 	// const processType = $('#analyzeForm input[name=processTypeInput]')[0].value;
