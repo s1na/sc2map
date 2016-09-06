@@ -78,6 +78,16 @@ function displayAllProcesses(res) {
 
 //   return false;
 // }
+function formatDate(dateStr) {
+	if(!dateStr)
+		return undefined;
+	try {
+		return new Date(dateStr).getTime();
+	} catch(err) {
+		console.log(err);
+		return undefined;
+	}
+}
 
 function submitAnalyse(e) {
   if (e.preventDefault) e.preventDefault();
@@ -87,8 +97,8 @@ function submitAnalyse(e) {
 	// they were changed to this, since the selector could not find the input.
 	// tested on Chrome 
 	const productName = $('input[name=productNameInput]').val();
-	const startTime = $('input[name=startTimeInput]').val();
-	const endTime = $('input[name=endTimeInput]').val();
+	const startTime = formatDate($('input[name=startTimeInput]').val());
+	const endTime = formatDate($('input[name=endTimeInput]').val());
 	const metricName = $('input[name=metricInput]').val();
 	const processType = $('input[name=processTypeInput]').val();
 
