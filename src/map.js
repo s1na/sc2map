@@ -7,8 +7,6 @@ import './index.css';
 class Map {
   constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
     leaflet.Icon.Default.imagePath = '/leaflet/dist/images';
-    //leaflet.Icon.Default.imagePath = '../images';
-
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
 
@@ -32,17 +30,15 @@ class Map {
     this.processes = {};
 
 
-    //specifying new icon to present the anchors
-    var greenIcon = L.icon({
+    // Specifying new icon to present the anchors
+    this.greenIcon = leaflet.icon({
       iconUrl: 'leaf-green.png',
-
-      iconSize:     [38, 95], // size of the icon
-      shadowSize:   [50, 64], // size of the shadow
-      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      iconSize: [38, 95], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
     });
-
   }
 
   onMapClick(e) {

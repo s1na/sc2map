@@ -25,7 +25,7 @@ function openFile() {
       db.setData(content);
       db.queryAll().then(t => {
         displayAllProcesses(t);
-      console.log(t);
+        console.log(t);
       });
     };
 

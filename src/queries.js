@@ -30,12 +30,14 @@ export default {
     GROUP BY ?p
     `),
 
-  METRIC1: {
-    SELECT: '(AVG(xsd:decimal((xsd:decimal(?value1)+xsd:decimal(?value2))/2)) AS ?metricResult)',
-    TRIPLES: [
-      '?p scor:hasMetricRL_32 ?value1 .',
-      '?p scor:hasMetricRL_34 ?value2 .',
-    ],
+  METRICS: {
+    DELIVERY_PERFORMANCE: {
+      SELECT: '(AVG(xsd:decimal((xsd:decimal(?value1)+xsd:decimal(?value2))/2)) AS ?metricResult)',
+      TRIPLES: [
+        '?p scor:hasMetricRL_32 ?value1 .',
+        '?p scor:hasMetricRL_34 ?value2 .',
+      ],
+    },
   },
   PROPS: {
     PRODUCT_NAME: {

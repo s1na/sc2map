@@ -102,8 +102,8 @@ export function queryAll() {
 
 export function buildQuery(processType, metric, props) {
   console.log(queries);
-  const select = [queries[metric].SELECT];
-  const triplesList = queries[metric].TRIPLES.slice();
+  const select = [queries.METRICS[metric].SELECT];
+  const triplesList = queries.METRICS[metric].TRIPLES.slice();
   const filtersList = [];
   console.log(select, triplesList, filtersList);
 
@@ -121,7 +121,7 @@ export function buildQuery(processType, metric, props) {
   }
 
   const query = queries.BASE({
-    processType: processType,
+    processType,
     select: select.join('\n'),
     triples: triplesList.join('\n'),
     filters: filtersList.join('\n'),
