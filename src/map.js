@@ -1,8 +1,7 @@
 import leaflet from 'leaflet';
-
 import 'leaflet/dist/leaflet.css';
-import './index.css';
 
+import './index.css';
 
 class Map {
   constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
@@ -11,6 +10,7 @@ class Map {
     this.el = leaflet.map(container).setView(initialView, initialZoom);
 
     const accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
+
     leaflet.tileLayer(`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${accessToken}`, {
       maxZoom: 18,
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -26,9 +26,7 @@ class Map {
       '#7f8c8d', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
       '#e74c3c', '#ecf0f1', '#2c3e50', '#f1c40f', '#1abc9c',
     ];
-    this.usedColors = [];
     this.processes = {};
-
 
     // Specifying new icon to present the anchors
     this.greenIcon = leaflet.icon({
@@ -51,9 +49,11 @@ class Map {
   addProcess(uid, obj) {
     const p = obj;
     const latlngs = [];
+    const names = [];
 
-    const color = this.colors.pop();
-    this.usedColors.push(color);
+    // choose a different color each time.
+    const color = this.colors.shift();
+    this.colors.push(color);
     p.color = color;
     p.markers = [];
     p.info = `
@@ -66,12 +66,16 @@ class Map {
 
     p.points.forEach((val, i) => {
       const marker = leaflet.marker(val).addTo(this.el);
-      marker.bindPopup(`Node number: ${i}`);
+      marker.bindPopup(p.names[i]);
+
       latlngs.push(marker.getLatLng());
+      // maybe useful for search
+      names.push(p.names[i]);
       p.markers.push(marker);
     });
-    p.line = leaflet.polyline(latlngs, { color }).addTo(this.el)
-      .bindTooltip(p.info, { permanent: false });
+    p.line = leaflet.polyline(latlngs, { color, weight: 10, opacity: 0.7 }).addTo(this.el)
+      .bindTooltip(p.info, { interactive: true, sticky: true });
+
     this.processes[uid] = p;
   }
 
@@ -79,6 +83,9 @@ class Map {
     const lines = this.processes[uid].info.split('\n');
     lines.pop();
     lines.pop();
+
+    console.log(this.processes[uid].line.bindTooltip(label, { permanent: true }));
+
     this.processes[uid].info = `
       ${lines.join('\n')}
         ${label}

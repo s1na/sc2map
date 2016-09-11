@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default {
   ALL: `
-    SELECT DISTINCT ?p ?st ?et ?lat ?long {
+    SELECT DISTINCT ?p ?st ?et ?lat ?long ?name {
       {
         ?pType rdfs:subClassOf scor:Deliver;
           rdfs:label ?label.
@@ -17,7 +17,8 @@ export default {
         ex:hasPath/ngeo:posList ?l.
       ?l rdfs:member ?mem.
       ?mem geo:lat ?lat;
-        geo:long ?long.
+        geo:long ?long;
+        ex:hasId ?name.
 
     }`,
   BASE: _.template(`

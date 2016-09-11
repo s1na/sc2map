@@ -54,7 +54,8 @@ npm-debug.log
 auto-save-list
 tramp
 .\#*
-
+*.orig
+	
 # Org-mode
 .org-id-locations
 *_archive

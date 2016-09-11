@@ -8,20 +8,19 @@
   </head>
   <body>
     <main class="ui grid">
-      <div class="sixteen wide column">
+      <div class="sixteen wide column" style="margin:16px 5px 0 18px;padding:0">
         <div class="ui secondary menu">
-
           <a class="item">
-            <div>
-              <button class="ui primary button" id="upload-button">Upload Data</button>
-              <input id="dataFile" type="file"/>
-            </div>
+          <div>
+            <button class="ui primary button" id="upload-button">Upload Data</button>
+            <input id="dataFile" type="file"/>
+          </div>
           </a>
-
+          <!--Added a logo which is shown in the top center-->
           <div class="right menu">
             <div class="item">
               <div class="ui icon input">
-                <i class="large map outline icon"></i>
+              <i class="large map outline icon"></i>
               </div>
             </div>
             <div class="item">
@@ -37,7 +36,6 @@
               <!--</div>-->
             </div>
           </div>
-
         </div>
       </div>
 
@@ -45,8 +43,8 @@
         <div id="mapid"></div>
       </div>
       <div class="four wide column sc2-util-container">
+        <form id="analyzeForm" class="ui form">
 
-        <form id="analyseForm" class="ui form">
           <div class="field">
             <label for="processTypeInput">Process type</label>
             <div class="ui selection dropdown">
@@ -59,7 +57,6 @@
               </div>
             </div>
           </div>
-
           <div class="field">
             <label for="metricInput">Metric</label>
             <div class="ui selection dropdown">
@@ -79,20 +76,22 @@
 
           <div class="field">
             <label type="text" for="startTimeInput">Start time</label>
-            <input id="startTimeInput" name="startTimeInput" type="text"/>
+            <input id="startTimeInput" name="startTimeInput" type="date" />
           </div>
 
           <div class="field">
             <label for="endTimeInput">End Time</label>
-            <input id="endTimeInput" name="endTimeInput" type="text"/>
+            <input id="endTimeInput" name="endTimeInput" type="date" />
           </div>
 
           <input type="submit" class="ui button" value="Analyse"/>
         </form>
       </div>
-      <div>Factory icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
-        href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a
-        href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+      <div>
+        Factory icon made by
+        <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by
+        <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
