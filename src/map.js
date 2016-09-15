@@ -85,11 +85,11 @@ class Map {
 
     console.log(this.processes[uid].line.bindTooltip(label, { permanent: true }));
 
-    this.processes[uid].info = `
+    /*this.processes[uid].info = `
       ${lines.join('\n')}
         ${label}
       </ul>
-      `;
+      `;*/
     this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: false });
   }
 }
