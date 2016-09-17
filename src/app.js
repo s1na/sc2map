@@ -95,6 +95,14 @@ function submitAnalyse(e) {
   });
 }
 
+function handleMetricClick(click) {
+  // remove existing tooltips here. function executed each time the value of the metrics box changes
+  // 
+  // const metricName = $('input[name=metricInput]').val();
+  // console.log(metricName);
+  // map.removeLabelFromProcesses('http://purl.org/eis/vocab/scor#someProcess_1');
+}
+
 
 $('#upload-button').click(() => $('#dataFile').click());
 
@@ -103,6 +111,8 @@ $('#upload-button').click(() => $('#dataFile').click());
 $('#dataFile').change(openFile);
 
 $('#analyzeForm').submit(submitAnalyse);
+
+$('#metricSelection').change(handleMetricClick);
 
 $(document).ready(() => {
   $('.ui.dropdown').dropdown();
