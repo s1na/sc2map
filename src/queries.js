@@ -56,6 +56,25 @@ export default {
         '?p scor:hasMetricRL_55 ?value5 .',
       ],
     },
+    PRODUCTION_COST: {
+      SELECT: '(SUM(xsd:decimal(?value1)+xsd:decimal(?value2)+xsd:decimal(?value3)+xsd:decimal(?value4)) AS ?metricResult)',
+      TRIPLES: [
+        '?p scor:hasMetricCO_14 ?value1 .',
+        '?p scor:hasMetricCO_15 ?value2 .',
+        '?p scor:hasMetricCO_16 ?value3 .',
+        '?p scor:hasMetricCO_17 ?value4 .',
+      ],
+    },
+    UPSIDE_SUPPLY_CHAIN_FLEXIBILITY: {
+      SELECT: '(SUM(xsd:decimal(?value1)+xsd:decimal(?value2)+xsd:decimal(?value3)+xsd:decimal(?value4)+xsd:decimal(?value5)) AS ?metricResult)',
+      TRIPLES: [
+        '?p scor:hasMetricAG_1 ?value1 .',
+        '?p scor:hasMetricAG_2 ?value2 .',
+        '?p scor:hasMetricAG_3 ?value3 .',
+        '?p scor:hasMetricAG_4 ?value4 .',
+        '?p scor:hasMetricAG_5 ?value5 .',
+      ],
+    },
   },
   PROPS: {
     PRODUCT_NAME: {
