@@ -40,9 +40,11 @@ function displayAllProcesses(res) {
     const processes = {};
 
     for (let i = 0; i < res.length; i++) {
+      // More than one node belongs to one process
       if (res[i].p.value in processes) {
         processes[res[i].p.value].points.push([res[i].lat.value, res[i].long.value]);
         processes[res[i].p.value].names.push(res[i].name.value);
+        processes[res[i].p.value].types.push(res[i].type.value);
       } else {
         const st = moment(res[i].st.value);
         const et = moment(res[i].et.value);
@@ -56,6 +58,7 @@ function displayAllProcesses(res) {
           duration,
           points: [[res[i].lat.value, res[i].long.value]],
           names: [res[i].name.value],
+          types: [res[i].type.value],
         };
       }
     }

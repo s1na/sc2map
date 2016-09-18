@@ -3,6 +3,9 @@ import 'leaflet/dist/leaflet.css';
 import _ from 'lodash';
 
 import factoryIcon from './img/factory-icon.png';
+import ryeIcon from './img/rye.png';
+import siloIcon from './img/silo.png';
+import windMillIcon from './img/wind-mill.png';
 import './index.css';
 
 class Map {
@@ -32,12 +35,19 @@ class Map {
     this.labeledProcs = [];
 
     // Specifying new icon to present the anchors
-    this.factoryIcon = leaflet.icon({
-      iconUrl: factoryIcon,
-      iconSize: [32, 32], // size of the icon
-      iconAnchor: [16, 16], // point of the icon which will correspond to marker's location
-      popupAnchor: [-3, -15], // point from which the popup should open relative to the iconAnchor
+    const customIcon = leaflet.Icon.extend({
+      options: {
+        iconSize: [32, 32], // size of the icon
+        iconAnchor: [16, 16], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -15], // point from which the popup should open relative to the iconAnchor
+      },
     });
+    this.icons = {
+      factory: new customIcon({ iconUrl: factoryIcon }),
+      farm: new customIcon({ iconUrl: ryeIcon }),
+      silo: new customIcon({ iconUrl: siloIcon }),
+      windMill: new customIcon({ iconUrl: windMillIcon }),
+    };
   }
 
   onMapClick(e) {
@@ -50,7 +60,6 @@ class Map {
   addProcess(uid, obj) {
     const p = obj;
     const latlngs = [];
-    const names = [];
 
     // choose a different color each time.
     const color = this.colors.shift();
@@ -68,12 +77,17 @@ class Map {
       `;
 
     p.points.forEach((val, i) => {
-      const marker = leaflet.marker(val, { icon: this.factoryIcon }).addTo(this.el);
-      marker.bindPopup(p.names[i]);
+      let icon = this.icons[p.types[i]];
+      if (!icon) icon = this.icons.factory;
+      const marker = leaflet.marker(val, { icon }).addTo(this.el);
+      marker.bindPopup(`
+        <ul>
+          <li>Name: ${p.names[i]}</li>
+          <li>Type: ${p.types[i]}</li>
+        </ul>
+      `);
 
       latlngs.push(marker.getLatLng());
-      // maybe useful for search
-      names.push(p.names[i]);
       p.markers.push(marker);
     });
     p.line = leaflet.polyline(latlngs, { color, weight: 10, opacity: 0.7 }).addTo(this.el)

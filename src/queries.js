@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default {
   ALL: `
-    SELECT DISTINCT ?p ?supplier ?pn ?st ?et ?lat ?long ?name {
+    SELECT DISTINCT ?p ?supplier ?pn ?st ?et ?lat ?long ?name ?type {
       {
         ?pType rdfs:subClassOf scor:Deliver;
           rdfs:label ?label.
@@ -20,7 +20,8 @@ export default {
       ?l rdfs:member ?mem.
       ?mem geo:lat ?lat;
         geo:long ?long;
-        ex:hasId ?name.
+        ex:hasName ?name;
+        ex:hasType ?type.
 
     }`,
   BASE: _.template(`
