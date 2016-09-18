@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default {
   ALL: `
-    SELECT DISTINCT ?p ?st ?et ?lat ?long ?name {
+    SELECT DISTINCT ?p ?supplier ?pn ?st ?et ?lat ?long ?name {
       {
         ?pType rdfs:subClassOf scor:Deliver;
           rdfs:label ?label.
@@ -12,6 +12,8 @@ export default {
           rdfs:label ?label.
       }
       ?p a ?pType;
+        ex:hasSupplier ?supplier;
+        ex:isSubjectOf ?pn;
         ex:hasStartTime ?st;
         ex:hasEndTime ?et;
         ex:hasPath/ngeo:posList ?l.
@@ -77,6 +79,10 @@ export default {
     },
   },
   PROPS: {
+    SUPPLIER: {
+      TRIPLES: ['?p ex:hasSupplier ?supplier .'],
+      FILTERS: _.template('FILTER(regex(str(?supplier), "<%= supplier %>")) .'),
+    },
     PRODUCT_NAME: {
       TRIPLES: ['?p ex:isSubjectOf ?pn .'],
       FILTERS: _.template('FILTER(regex(str(?pn), "<%= productName %>")) .'),

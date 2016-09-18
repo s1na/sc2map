@@ -109,6 +109,10 @@ export function buildQuery(processType, metric, props) {
   const filtersList = [];
   console.log(select, triplesList, filtersList);
 
+  if (props.supplier) {
+    triplesList.push(queries.PROPS.SUPPLIER.TRIPLES);
+    filtersList.push(queries.PROPS.SUPPLIER.FILTERS({ supplier: props.supplier }));
+  }
   if (props.productName) {
     triplesList.push(queries.PROPS.PRODUCT_NAME.TRIPLES);
     filtersList.push(queries.PROPS.PRODUCT_NAME.FILTERS({ productName: props.productName }));

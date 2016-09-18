@@ -59,6 +59,8 @@ class Map {
     p.markers = [];
     p.info = `
       <ul>
+        <li>Supplier: ${p.supplier}</li>
+        <li>Product name: ${p.productName}</li>
         <li>Start Time:  ${p.et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
         <li>End Time:  ${p.st.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>
         <li>Duration: ${p.duration}</li>

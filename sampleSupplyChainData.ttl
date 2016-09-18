@@ -96,7 +96,7 @@ ex:p2Path a ngeo:LineString ;
 
 :someProcess_2 a :DeliverStockedProduct ;
         ex:hasCommitDate "2015-11-05" ;
-        ex:hasSupplier "Sangio Sugar Factory" ;
+        ex:hasSupplier "Horbacher Mühle" ;
         ex:isSubjectOf "Flour" ;
         ex:processId "3ad9380f-1eb4-4595-857b-1bcf874621bb" ;
         ex:hasPath ex:p2Path ;

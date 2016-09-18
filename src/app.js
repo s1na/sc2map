@@ -49,6 +49,8 @@ function displayAllProcesses(res) {
         const duration = et.from(st);
 
         processes[res[i].p.value] = {
+          supplier: res[i].supplier.value,
+          productName: res[i].pn.value,
           st,
           et,
           duration,
@@ -84,13 +86,14 @@ function submitAnalyse(e) {
 	// const processType = $('#analyzeForm input[name=processTypeInput]')[0].value;
 	// they were changed to this, since the selector could not find the input.
   // tested on Chrome
+  const supplier = $('input[name=supplierInput]').val();
   const productName = $('input[name=productNameInput]').val();
   const startTime = formatDate($('input[name=startTimeInput]').val());
   const endTime = formatDate($('input[name=endTimeInput]').val());
   const metricName = $('input[name=metricInput]').val();
   const processType = $('input[name=processTypeInput]').val();
 
-  db.buildQuery(processType, metricName, { productName, startTime, endTime }).then(res => {
+  db.buildQuery(processType, metricName, { supplier, productName, startTime, endTime }).then(res => {
     console.log(res);
     res.forEach((v) => {
       map.addLabelToProcess(v.p.value, `${v.metricResult.value}`);
