@@ -1,5 +1,6 @@
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import _ from 'lodash';
 
 import factoryIcon from './img/factory-icon.png';
 import './index.css';
@@ -28,6 +29,7 @@ class Map {
       '#e74c3c', '#ecf0f1', '#2c3e50', '#f1c40f', '#1abc9c',
     ];
     this.processes = {};
+    this.labeledProcs = [];
 
     // Specifying new icon to present the anchors
     this.factoryIcon = leaflet.icon({
@@ -73,24 +75,20 @@ class Map {
       p.markers.push(marker);
     });
     p.line = leaflet.polyline(latlngs, { color, weight: 10, opacity: 0.7 }).addTo(this.el)
-      .bindTooltip(p.info, { interactive: true, sticky: true });
+      .bindPopup(p.info);
 
     this.processes[uid] = p;
   }
 
   addLabelToProcess(uid, label) {
-    const lines = this.processes[uid].info.split('\n');
-    lines.pop();
-    lines.pop();
+    this.processes[uid].line.bindTooltip(label, { permanent: true });
+    this.labeledProcs.push(uid);
+  }
 
-    console.log(this.processes[uid].line.bindTooltip(label, { permanent: true }));
-
-    /*this.processes[uid].info = `
-      ${lines.join('\n')}
-        ${label}
-      </ul>
-      `;*/
-    this.processes[uid].line.bindTooltip(this.processes[uid].info, { permanent: false });
+  clearLabels() {
+    _.forEach(this.labeledProcs, (val) => {
+      this.processes[val].line.unbindTooltip();
+    });
   }
 }
 
