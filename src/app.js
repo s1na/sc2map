@@ -69,7 +69,7 @@ function displayAllProcesses(res) {
 function formatDate(dateStr) {
   if (!dateStr) return undefined;
   try {
-    return new Date(dateStr).getTime();
+    return moment(dateStr).format('YYYY-MM-DDTHH:mm:ss');
   } catch (err) {
     console.log(err);
     return undefined;
