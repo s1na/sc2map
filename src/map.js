@@ -2,14 +2,17 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import _ from 'lodash';
 
-import factoryIcon from './img/factory-icon.png';
-import ryeIcon from './img/rye.png';
+import factoryIcon from './img/factory.png';
+import farmIcon from './img/rye.png';
 import siloIcon from './img/silo.png';
 import windMillIcon from './img/wind-mill.png';
+import mineIcon from './img/pick-and-shovel.png';
+import powerPlantIcon from './img/power-plant.png';
+
 import './index.css';
 
 class Map {
-  constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 11) {
+  constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 7) {
     leaflet.Icon.Default.imagePath = '/leaflet/dist/images';
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
@@ -44,9 +47,11 @@ class Map {
     });
     this.icons = {
       factory: new customIcon({ iconUrl: factoryIcon }),
-      farm: new customIcon({ iconUrl: ryeIcon }),
+      farm: new customIcon({ iconUrl: farmIcon }),
       silo: new customIcon({ iconUrl: siloIcon }),
       windMill: new customIcon({ iconUrl: windMillIcon }),
+      mine: new customIcon({ iconUrl: mineIcon }),
+      powerPlant: new customIcon({ iconUrl: powerPlantIcon }),
     };
   }
 

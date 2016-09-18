@@ -17,21 +17,21 @@
 
 
 ex:point1 a geo:Point;
-        geo:lat "50.77512"^^xsd:double;
-        geo:long "7.18437"^^xsd:double;
-        ex:hasName "Factory1";
-        ex:hasType "factory".
+        geo:lat "53.140171"^^xsd:double;
+        geo:long "46.606662"^^xsd:double;
+        ex:hasName "Kuznetsk Basin";
+        ex:hasType "mine".
 
 ex:point2 a geo:Point;
-        geo:lat "50.70037"^^xsd:double;
-        geo:long "7.08687"^^xsd:double;
-        ex:hasName "Factory2";
-        ex:hasType "factory".
+        geo:lat "51.465979"^^xsd:double;
+        geo:long "7.014373"^^xsd:double;
+        ex:hasName "RWE Supply & Trading GmbH";
+        ex:hasType "powerPlant".
 
 ex:point3 a geo:Point;
-        geo:lat "50.73221"^^xsd:double;
-        geo:long "7.10212"^^xsd:double;
-        ex:hasName "Factory3";
+        geo:lat "49.513603"^^xsd:double;
+        geo:long "11.036144"^^xsd:double;
+        ex:hasName "Staedtler Mars GmbH Factory";
         ex:hasType "factory".
 
 ex:p1PathSeq a rdf:Seq;
@@ -44,12 +44,12 @@ ex:p1Path a ngeo:LineString ;
 
 :someProcess_1 a :DeliverStockedProduct ;
         ex:hasCommitDate "2015-11-05" ;
-        ex:hasSupplier "Sangio Sugar Factory" ;
-        ex:isSubjectOf "Raw sugar" ;
+        ex:hasSupplier "RWE AG" ;
+        ex:isSubjectOf "Electricity" ;
         ex:processId "2ad9380f-1eb4-4595-857b-1bcf874621bb" ;
         ex:hasPath ex:p1Path ;
         ex:hasStartTime "2016-03-24T00:00:00"^^xsd:datetime ;
-        ex:hasEndTime "2016-04-01T00:00:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-05-02T00:00:00"^^xsd:datetime ;
         :hasMetricAG_1 "19" ;
         :hasMetricAG_2 "13" ;
         :hasMetricAG_3 "11" ;
