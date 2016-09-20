@@ -104,6 +104,11 @@ function submitAnalyse(e) {
   });
 }
 
+/** Clear labels on process or metric change. */
+function handleProcessMetricChange() {
+  map.clearLabels();
+}
+
 $('#upload-button').click(() => $('#dataFile').click());
 
 // $('#queryForm').submit(submitQuery);
@@ -111,6 +116,10 @@ $('#upload-button').click(() => $('#dataFile').click());
 $('#dataFile').change(openFile);
 
 $('#analyzeForm').submit(submitAnalyse);
+
+$('#metricSelection').change(handleProcessMetricChange);
+
+$('#processSelection').change(handleProcessMetricChange);
 
 $(document).ready(() => {
   $('.ui.dropdown').dropdown();
