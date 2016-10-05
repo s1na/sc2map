@@ -3,12 +3,15 @@ import _ from 'lodash';
 
 export default {
   ALL: `
-    SELECT DISTINCT ?p ?supplier ?pn ?st ?et ?lat ?long ?name ?type {
+    SELECT DISTINCT ?p ?pType ?supplier ?pn ?st ?et ?lat ?long ?name ?type {
       {
         ?pType rdfs:subClassOf scor:Deliver;
           rdfs:label ?label.
       } UNION {
         ?pType rdfs:subClassOf scor:Source;
+          rdfs:label ?label.
+      } UNION {
+        ?pType rdfs:subClassOf scor:Make;
           rdfs:label ?label.
       }
       ?p a ?pType;

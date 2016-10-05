@@ -5,10 +5,11 @@ import _ from 'lodash';
 // import $ from 'jquery';
 import moment from 'moment';
 
-import map from './map';
 import 'semantic-ui/dist/semantic.js';
 import 'semantic-ui/dist/semantic.css';
 
+import * as config from './config';
+import map from './map';
 import * as db from './store';
 import './index.css';
 
@@ -51,6 +52,7 @@ function displayAllProcesses(res) {
         const duration = et.from(st);
 
         processes[res[i].p.value] = {
+          pType: res[i].pType.value.replace(config.prefixes.scor, ''),
           supplier: res[i].supplier.value,
           productName: res[i].pn.value,
           st,

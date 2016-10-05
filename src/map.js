@@ -30,12 +30,37 @@ class Map {
     this.popup = leaflet.popup();
     this.el.on('click', this.onMapClick.bind(this));
 
+    this.procTypes = {
+      DeliverStockedProduct: {
+        color: '#2980b9',
+      },
+      SourceMakeToOrderProduct: {
+        color: '#f1c40f',
+      },
+      MakeToOrder: {
+        color: '#c0392b',
+      },
+    };
     this.colors = [
       '#7f8c8d', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
       '#e74c3c', '#ecf0f1', '#2c3e50', '#f1c40f', '#1abc9c',
     ];
     this.processes = {};
     this.labeledProcs = [];
+
+    // Info legend
+    const legend = leaflet.control({ position: 'bottomright' });
+    legend.onAdd = () => {
+      const div = leaflet.DomUtil.create('div', 'info legend');
+
+      // loop through our density intervals and generate a label with a colored square for each interval
+      _.forEach(this.procTypes, (v, k) => {
+        div.innerHTML += `<i style="background: ${v.color}"></i> ${k}<br>`;
+      });
+
+      return div;
+    };
+    legend.addTo(this.el);
 
     // Specifying new icon to present the anchors
     const customIcon = leaflet.Icon.extend({
@@ -67,12 +92,12 @@ class Map {
     const latlngs = [];
 
     // choose a different color each time.
-    const color = this.colors.shift();
-    this.colors.push(color);
+    const color = this.procTypes[p.pType].color;
     p.color = color;
     p.markers = [];
     p.info = `
       <ul>
+        <li>Process Type: ${p.pType}</li>
         <li>Supplier: ${p.supplier}</li>
         <li>Product name: ${p.productName}</li>
         <li>Start Time:  ${p.et.format('ddd, MMM Do YYYY, HH:mm:ss')}</li>

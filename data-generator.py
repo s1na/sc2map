@@ -19,7 +19,38 @@ YEAR = 1 * 12 * 30 * 24 * 60 * 60
 
 # Global variables
 nodeTypes = ['factory', 'mine', 'powerPlant', 'farm', 'silo', 'windMill']
-processTypes = [scorvoc['DeliverStockedProduct'], scorvoc['SourceMakeToOrderProduct']]
+processTypes = [
+    {
+        'uri': scorvoc['DeliverStockedProduct'],
+        'metrics': [
+            scorvoc['hasMetricRS_20'], scorvoc['hasMetricAG_1'], scorvoc['hasMetricAG_4'],
+            scorvoc['hasMetricAG_32'], scorvoc['hasMetricCO_18'], scorvoc['hasMetricCO_19'],
+            scorvoc['hasMetricCO_20'], scorvoc['hasMetricCO_21'], scorvoc['hasMetricCO_22'],
+            scorvoc['hasMetricCO_23'], scorvoc['hasMetricCO_24'], scorvoc['hasMetricCO_25'],
+            scorvoc['hasMetricCO_26'], scorvoc['hasMetricCO_27'], scorvoc['hasMetricAM_17'],
+            scorvoc['hasMetricAM_45'],
+        ],
+    },
+    {
+        'uri': scorvoc['SourceMakeToOrderProduct'],
+        'metrics': [
+            scorvoc['hasMetricAG_9'], scorvoc['hasMetricAG_40'], scorvoc['hasMetricAG_42'],
+            scorvoc['hasMetricAG_46'], scorvoc['hasMetricCO_5'], scorvoc['hasMetricCO_6'],
+            scorvoc['hasMetricCO_7'], scorvoc['hasMetricCO_8'], scorvoc['hasMetricCO_9'],
+            scorvoc['hasMetricCO_10'], scorvoc['hasMetricCO_11'], scorvoc['hasMetricCO_12'],
+            scorvoc['hasMetricAM_16'],
+        ],
+    },
+    {
+        'uri': scorvoc['MakeToOrder'],
+        'metrics': [
+            scorvoc['hasMetricCO_14'], scorvoc['hasMetricCO_15'], scorvoc['hasMetricCO_16'],
+            scorvoc['hasMetricCO_17'], scorvoc['hasMetricRL_58'], scorvoc['hasMetricRS_21'],
+            scorvoc['hasMetricAG_2'], scorvoc['hasMetricAG_38'], scorvoc['hasMetricAM_17'],
+            scorvoc['hasMetricAM_22'],
+        ],
+    },
+]
 metrics = [
     scorvoc['hasMetricCO_14'], scorvoc['hasMetricCO_15'], scorvoc['hasMetricCO_16'], scorvoc['hasMetricCO_17'],
     scorvoc['hasMetricRL_32'], scorvoc['hasMetricRL_33'], scorvoc['hasMetricRL_34'], scorvoc['hasMetricRL_50'],
@@ -44,14 +75,15 @@ def datetime_generator(before=time.time() - YEAR):
 def generate_process(g, pid):
     path = generate_path(g, pid)
     process = ex['process%d' % pid]
-    g.add((process, RDF.type, processTypes[random.randint(0, len(processTypes) - 1)]))
+    processIn = random.randint(0, len(processTypes) - 1)
+    g.add((process, RDF.type, processTypes[processIn]['uri']))
     g.add((process, ex.hasSupplier, Literal(id_generator())))
     g.add((process, ex.isSubjectOf, Literal(id_generator())))
     g.add((process, ex.hasPath, path))
     end_time = datetime_generator()
     g.add((process, ex.hasEndTime, Literal(end_time[1], datatype=XSD.datetime)))
     g.add((process, ex.hasStartTime, Literal(datetime_generator(before=end_time[0])[1], datatype=XSD.datetime)))
-    for m in metrics:
+    for m in processTypes[processIn]['metrics']:
         g.add((process, m, Literal(random.randint(0, 100), datatype=XSD.integer)))
 
 def generate_path(g, pid):
