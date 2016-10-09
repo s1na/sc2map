@@ -98,6 +98,15 @@ export default {
         '?p scor:hasMetricAG_5 ?value5 .',
       ],
     },
+    SOURCING_COST: {
+      SELECT: '(SUM(xsd:double(xsd:decimal(?value1) + xsd:decimal(?value2) + xsd:decimal(?value3) + xsd:decimal(?value4))) AS ?metricResult)',
+      TRIPLES: [
+        '?p scor:hasMetricCO_5 ?value1 .',
+        '?p scor:hasMetricCO_6 ?value2 .',
+        '?p scor:hasMetricCO_7 ?value3 .',
+        '?p scor:hasMetricCO_8 ?value4 .',
+      ],
+    },
   },
   /*
    * In the analysis query, the filter values must be considered.

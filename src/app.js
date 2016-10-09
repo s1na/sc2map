@@ -110,7 +110,16 @@ function submitAnalyse(e) {
 }
 
 /** Clear labels on process or metric change. */
-function handleProcessMetricChange() {
+function handleProcessChange() {
+  map.clearLabels();
+  const processType = $('input[name=processTypeInput]').val();
+  console.log(processType);
+
+  $('#metricSelection').replaceWith(config.processMetrics[processType]);
+  $('.ui.dropdown').dropdown();
+}
+
+function handleMetricChange() {
   map.clearLabels();
 }
 
@@ -122,9 +131,9 @@ $('#dataFile').change(openFile);
 
 $('#analyzeForm').submit(submitAnalyse);
 
-$('#metricSelection').change(handleProcessMetricChange);
+$('#processSelection').change(handleProcessChange);
 
-$('#processSelection').change(handleProcessMetricChange);
+$('#metricSelection').change(handleMetricChange);
 
 $(document).ready(() => {
   $('.ui.dropdown').dropdown();
