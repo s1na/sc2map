@@ -60,4 +60,4 @@ tramp
 .org-id-locations
 *_archive
 
-dataset.ttl
+*.ttl
