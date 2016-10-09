@@ -13,6 +13,7 @@ import './index.css';
 
 class Map {
   constructor(container = 'mapid', initialView = [50.73211, 7.09305], initialZoom = 7) {
+    // Manually set the image path for leaflet icons
     leaflet.Icon.Default.imagePath = '/leaflet/dist/images';
 
     this.el = leaflet.map(container).setView(initialView, initialZoom);
@@ -87,11 +88,15 @@ class Map {
       .openOn(this.el);
   }
 
+  /*
+   * Add a process initially to the map, keep records of it
+   * for further manipulation
+   */
   addProcess(uid, obj) {
     const p = obj;
     const latlngs = [];
 
-    // choose a different color each time.
+    // Choose process line color based on process type
     const color = this.procTypes[p.pType].color;
     p.color = color;
     p.markers = [];
@@ -108,7 +113,7 @@ class Map {
 
     p.points.forEach((val, i) => {
       let icon = this.icons[p.types[i]];
-      if (!icon) icon = this.icons.factory;
+      if (!icon) icon = this.icons.factory; // Default icon is factory
       const marker = leaflet.marker(val, { icon }).addTo(this.el);
       marker.bindPopup(`
         <ul>
@@ -126,11 +131,18 @@ class Map {
     this.processes[uid] = p;
   }
 
+  /*
+   * Add the results of analysis as a label to
+   * the lines of a process.
+   */
   addLabelToProcess(uid, label) {
     this.processes[uid].line.bindTooltip(label, { permanent: true });
     this.labeledProcs.push(uid);
   }
 
+  /*
+   * Upon new analysis, clears the previous labels
+   */
   clearLabels() {
     _.forEach(this.labeledProcs, (val) => {
       this.processes[val].line.unbindTooltip();

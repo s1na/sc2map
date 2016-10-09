@@ -2,6 +2,11 @@ import _ from 'lodash';
 
 
 export default {
+  /*
+   * Main query which is spawned on loading of a new dataset.
+   * Retrieves all the relevant data for the processes of certain
+   * types which were loaded from the dataset.
+   */
   ALL: `
     SELECT DISTINCT ?p ?pType ?supplier ?pn ?st ?et ?lat ?long ?name ?type {
       {
@@ -27,6 +32,10 @@ export default {
         ex:hasType ?type.
 
     }`,
+  /*
+   * A base template for metric analysis which will
+   * be extended depending on the metric and filters.
+   */
   BASE: _.template(`
     SELECT ?p <%= select %>
     WHERE {
@@ -37,6 +46,14 @@ export default {
     GROUP BY ?p
     `),
 
+  /*
+   * Definition of metrics. They're defined  by a select part
+   * which goes into the select part of base template. It must
+   * return the result in the value ?metricResult.
+   * Triples get the metric values that are required to compute
+   * a certain analysis metric. Naming of the variables should
+   * be consistent with those used in the select part.
+   */
   METRICS: {
     DELIVERY_PERFORMANCE: {
       SELECT: '(AVG(xsd:decimal((xsd:decimal(?value1)+xsd:decimal(?value2))/2)) AS ?metricResult)',
@@ -82,6 +99,17 @@ export default {
       ],
     },
   },
+  /*
+   * In the analysis query, the filter values must be considered.
+   * This happens by extending the base template with values which
+   * the user entered.
+   * As with metrics, props (filters) provide a triples array which
+   * contains some variables that are in turn used to filter the result.
+   * In contrast to metrics, in props, the variables within triples are not
+   * returned.
+   * Filters array contains SPARQL filters to limit the selection of processes
+   * according to the values entered by the user.
+   */
   PROPS: {
     SUPPLIER: {
       TRIPLES: ['?p ex:hasSupplier ?supplier .'],

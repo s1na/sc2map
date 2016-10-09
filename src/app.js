@@ -25,6 +25,7 @@ function openFile() {
     reader.onload = (ev) => {
       content = ev.target.result;
       db.setData(content);
+      // Get the processes and display them
       db.queryAll().then(t => {
         displayAllProcesses(t);
         console.log(t);
@@ -46,6 +47,7 @@ function displayAllProcesses(res) {
         processes[res[i].p.value].points.push([res[i].lat.value, res[i].long.value]);
         processes[res[i].p.value].names.push(res[i].name.value);
         processes[res[i].p.value].types.push(res[i].type.value);
+      // Havent seen the process before
       } else {
         const st = moment(res[i].st.value);
         const et = moment(res[i].et.value);
@@ -98,6 +100,7 @@ function submitAnalyse(e) {
   const metricName = $('input[name=metricInput]').val();
   const processType = $('input[name=processTypeInput]').val();
 
+  // Build a query according to the filters and add corresponding results as labels
   db.buildQuery(processType, metricName, { supplier, productName, startTime, endTime }).then(res => {
     console.log(res);
     res.forEach((v) => {

@@ -100,15 +100,28 @@ export function queryAll() {
   return Q.fcall(runQuery.bind(null, queries.ALL));
 }
 
+/*
+ * Assembles the analysis query by fetching the data provided
+ * by user, and putting them in SPARQL templates that are defined
+ * in queries.js, and finally making a whole query by integrating
+ * these small templates in the base query template.
+ *
+ * Returns a promise, which on fulfillment returns
+ * the result of the processes left by the filtering procedure
+ * along with the result of analysis upon them.
+ */
 export function buildQuery(processType, metric, props) {
   console.log('Build query: ', processType, metric, props);
 	// This is to avoid metric undefined, when it is small case here..
   const upperMetric = metric.toUpperCase();
+  // Choose select and triples template depending on the metric type
   const select = [queries.METRICS[upperMetric].SELECT];
   const triplesList = queries.METRICS[upperMetric].TRIPLES.slice();
   const filtersList = [];
   console.log(select, triplesList, filtersList);
 
+  // If any of the possible props were provided, get their templates
+  // and fill them with values
   if (props.supplier) {
     triplesList.push(queries.PROPS.SUPPLIER.TRIPLES);
     filtersList.push(queries.PROPS.SUPPLIER.FILTERS({ supplier: props.supplier }));
