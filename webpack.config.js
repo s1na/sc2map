@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
-    publicPath: '/sc2map',
+    publicPath: '/sc2map/',
     libraryTarget: 'var',
     library: 'app',
   },
